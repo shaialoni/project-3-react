@@ -72,18 +72,18 @@ We will be using React for our front end with RESTful routes and Moongose Expres
     - unique
 - hashedPassword: string
     - required
-- token: string ???
+- token: string
 - timestamps
     
 ### Post
 - title: string
 - caption: string
-- image: 
+- image: url(?) w aws
 - like: boolean (reach goal)
 - follow: boolean (reach goal)
 - timestamp:
 - owner: mongoose.Schema.Types.ObjectId
-    required
+    - required
 
 ### Comment (sub-schema)
 - comment: string (reach goal)
