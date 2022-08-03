@@ -1,7 +1,7 @@
-# project-3-react
-Image Upload (Inspired by Intagram)
+# Spotlight API Project 
+A social media app that allow users to "SPOTLIGHT" a major current event, a special moment of their day, or just an image that provided a fleeting moment of joy and share it with others.
 
-User story
+## User Story
 -As an unregistered user, I would like to view all images
 -As an unregistered user, I would like to sign up with email and password.
 -As a registered user, I would like to sign in with email and password.
@@ -12,28 +12,83 @@ User story
 -As a signed in user, I would like to see all my images on AWS.
 -As a signed in user, I would like to see the thumbnail of all images on AWS.
 -As a signed in user, I would like to delete the reference of my image from the database.
--As a signed in user, I would like to see the following data for any image:
+-As a signed in user, I would like to see the following data for any post:
     -date created/uploaded
     -date modified
-    -owner (user who uploaded the image)
+    -owner (user who created the post)
     -name
 
-
-Reach goals
+### Reach Goals
 -As an unregistered user, I would like to download any image
 -As a signed in user, I would like to 'like' images
--As a signed in user, I would like to 'unlike' images
 -As a signed in user, I would like to comment on images
-    -...I would like to delete owner's comments
-    -...I would like to update owner's comments
+-As a signed in user, I would like to delete owner's comments
+-As a signed in user, I would like to update owner's comments
+-As a signed in user, i would like to follow another user **
+-As a signed in user, i would like to share another user's post **
 
-Schema
-    -Post
-        -title: string
-        -caption: string
-        -image: 
-        -timestamp:
-        -owner:
-        -like: boolean
+## Technology
+We will be using React for our front end with RESTful routes and Moongose Express for our back end with CRUD actions. The app will use AWS to store the uploaded images, MongoDB Atlas as the database, and Heroku to launch.
 
+## ERD
+![](planning/ERD.png)
 
+## Wireframes
+![](planning/WireFrames.png)
+
+## Route Table
+
+### Authentication
+| Verb   | URI Pattern         | Controller#Action |
+| ------ | ------------------- | ----------------- |
+| POST   | `/sign-up`          | `users#signup`    |
+| POST   | `/sign-in`          | `users#signin`    |
+| PATCH  | `/change-password/` | `users#changepw`  |
+| DELETE | `/sign-out/`        | `users#signout `  |
+
+### USER'S POST
+| Verb   | URI Pattern | Controller#Action    |
+| ------ | ----------- | -------------------- |
+| GET    | `/`         | `other users' index` |
+| GET    | `/:userId`  | `my index`           |
+| POST   | `/`         | `add`                |
+| PATCH  | `/:postId`  | `update`             |
+| DELETE | `/:postId`  | `destroy`            |
+
+### COMMENT
+| Verb   | URI Pattern           | Controller#Action |
+| ------ | --------------------- | ----------------- |
+| POST   | `/:postId/:commentId` | `add`             |
+| PATCH  | `/:postId/:commentId` | `update`          |
+| DELETE | `/:postId/:commentId` | `destroy`         |
+
+## Schema
+### User
+-email: string
+    -required
+    -unique
+-username: string
+    -required
+    -unique
+-hashedPassword: string
+    -required
+-token: string ???
+-timestamps
+    
+### Post
+-title: string
+-caption: string
+-image: 
+-like: boolean (reach goal)
+-follow: boolean (reach goal)
+-timestamp:
+-owner: mongoose.Schema.Types.ObjectId
+    required
+
+### Comment (sub-schema)
+-comment: string (reach goal)
+
+## Development Roles 
+-Front End SME: Trevor Zou
+-Back End SME: Shai Aloni 
+-Team Manage: Dang Do
