@@ -11,6 +11,9 @@ A social media app that allow users to "SPOTLIGHT" a major current event, a spec
 - As a signed in user, I would like to update the name of my image on AWS.
 - As a signed in user, I would like to see all my images on AWS.
 - As a signed in user, I would like to see the thumbnail of all images on AWS.
+- As a signed in user, I would like to comment on posts
+- As a signed in user, I would like to delete my comments
+- As a signed in user, I would like to update my comments
 - As a signed in user, I would like to delete the reference of my image from the database.
 - As a signed in user, I would like to see the following data for any post:
     - date created/uploaded
@@ -18,12 +21,9 @@ A social media app that allow users to "SPOTLIGHT" a major current event, a spec
     - owner (user who created the post)
     - name
 
-### Reach Goals
+### Stretch Goals
 - As an unregistered user, I would like to download any image
 - As a signed in user, I would like to 'like' images
-- As a signed in user, I would like to comment on images
-- As a signed in user, I would like to delete owner's comments
-- As a signed in user, I would like to update owner's comments
 - As a signed in user, i would like to follow another user
 - As a signed in user, i would like to share another user's post
 
@@ -89,6 +89,6 @@ We will be using React for our front end with RESTful routes and Moongose Expres
 - comment: string (reach goal)
 
 ## Development Roles 
-- Front End SME: Trevor Zou
-- Back End SME: Shai Aloni 
-- Team Manage: Dang Do
+- Front-End SME: Trevor Zou
+- Back-End SME: Shai Aloni 
+- Team Manager: Dang Do
