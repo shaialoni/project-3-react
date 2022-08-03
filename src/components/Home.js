@@ -1,4 +1,4 @@
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Spinner } from 'react-bootstrap'
 import { useState } from 'react'
 import axios from 'axios'
 import apiUrl from './../apiConfig'
@@ -9,6 +9,8 @@ const Home = (props) => {
 	// console.log('props in home', props)
 
 	const [ selected, setSelected ] = useState(null)
+	const [ upload, setUpload ] = useState({})
+	const [ loading, setLoading ] = useState(null)
 
 	const handleChange = (e) => {
 		e.preventDefault()
@@ -17,6 +19,7 @@ const Home = (props) => {
 
 	const handleSubmit =(e) => {
 		e.preventDefault()
+		setLoading(true)
 		const data = new FormData()
 		data.append('upload', selected)
 		axios({
@@ -25,12 +28,16 @@ const Home = (props) => {
 			//short for data: data
 			data
 		})
-			.then(console.log)
+			.then(res => setUpload(res.data.upload))
+			.then(() => setLoading(false))
 			.catch(console.error)
 	}
 	return (
 		<>
+			
 			<h2>Home Page</h2>
+			{upload.url ? ( <img className={'display-image'} alt={upload.url} src={upload.url}/> ) : '' }
+			{loading ? (<Spinner animation="border" />) : ''}
 			{/* form for file input */}
 			<Form onSubmit={handleSubmit}>
 			<Form.Group className="mb-3">
