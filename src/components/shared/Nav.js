@@ -13,7 +13,7 @@ import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { FaAlignJustify } from 'react-icons/fa';
 import { Icon } from '@chakra-ui/react';
 
-const Nav = ({ onOpen, ref }) => {
+const Nav = ({ onOpen, ref, user }) => {
   const [scroll, setScroll] = useState(false);
   const { colorMode, toggleColorMode } = useColorMode();
   const navBg = useColorModeValue('white', 'blackAlpha.200');
