@@ -3,9 +3,10 @@ import Nav from './components/shared/Nav'
 import React, { useRef, Fragment, useState} from 'react';
 import { useDisclosure } from '@chakra-ui/react';
 import DrawerComponent from './components/DrawerComponent';
-import { Route, Routes } from 'react-router-dom'
+import { useNavigate, Route, Routes } from 'react-router-dom'
 import SignUp from './components/auth/SignUp';
 import SignIn from './components/auth/SignIn'
+import { signOut } from './api/auth';
 import Feed from './components/post/Feed';
 import MyIndex from './components/post/MyIndex';
 import { v4 as uuid } from 'uuid'
@@ -14,9 +15,17 @@ import Create from './components/post/Create';
 function App() {
 
   const [user, setUser] = useState(null)
+  const navigate = useNavigate()
   const clearUser = () => {
     // console.log('clear user ran')
-    setUser(null)
+    signOut(user)
+      .then(res => {
+        console.log('Logged out')
+        setUser(null)
+        console.log('new state of user', user)
+        navigate('/')
+      })
+      .catch(console.error)
   }
 
   const { isOpen, onOpen, onClose } = useDisclosure();

@@ -17,13 +17,13 @@ const SignIn = (props) => {
 
   const onSubmit = (values) => {
     const credentials = values
-    // signIn(credentials)
-    //       .then(res => {
-    //         setUser(res.data.user)
-    //         console.log('res.data.user', res.data.user)
-    //         navigate('/')
-    //       })
-    //       .catch(error => console.log(error))
+    signIn(credentials)
+          .then(res => {
+            setUser(res.data.user)
+            console.log('res.data.user', res.data.user)
+            navigate('/')
+          })
+          .catch(error => console.log(error))
 
   }
 

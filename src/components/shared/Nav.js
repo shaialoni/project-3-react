@@ -50,9 +50,13 @@ const Nav = ({ onOpen, ref, user }) => {
           Feed
         </Link>
         <Text > <pre>  </pre> </Text>
-        <Link href="/myposts" fontSize="md" ml={3}>
-          My Posts
-        </Link>
+        { user ? (
+          <Link href="/myposts" fontSize="md" ml={3}>
+            My Posts
+          </Link>) 
+          : ''
+        }
+        
         </>
       ) : (
         <>
@@ -64,14 +68,16 @@ const Nav = ({ onOpen, ref, user }) => {
       <Spacer />
       
       <Flex alignItems="center">
-        <IconButton mr="10" w={6} h={6} p={5} onClick={toggleColorMode}>
+        <IconButton mr="5" w={6} h={6} p={5} onClick={toggleColorMode}>
           {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
         </IconButton>
 
         {isLargerThanMD ? (
           <>
             <a target="_blank" rel="noreferrer" href="https://appseed.us/apps/react/" fontSize="md" mr="10">
-              Logout
+              { user ? 'Logout' : (<a href="/signin" fontSize="md" >Log In </a>)
+            
+             }
             </a>
           </>
         ) : (

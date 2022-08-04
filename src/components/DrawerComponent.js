@@ -10,7 +10,7 @@ import {
   Flex,
 } from '@chakra-ui/react';
 
-const DrawerComponent = ({ isOpen, onClose, btnRef }) => {
+const DrawerComponent = ({ isOpen, onClose, btnRef, user }) => {
   return (
     <Drawer
       isOpen={isOpen}
@@ -28,8 +28,16 @@ const DrawerComponent = ({ isOpen, onClose, btnRef }) => {
         <DrawerBody>
           <Flex flexDirection="column">
             <Link href="/" mb="3">Feed</Link>
-            <Link href="/myposts" mb="3">My Profile</Link>
-            <Link href="/signin" mb="3">Login</Link>
+            {user ? (
+              <>
+                <Link href="/myposts" mb="3">My Profile</Link>
+                <Link href="/logout" mb="3">Logout</Link>
+              </>
+            ) : 
+            (
+              <Link href="/signin" mb="3">Login</Link>
+            )
+            }
           </Flex>
         </DrawerBody>
       </DrawerContent>
