@@ -7,8 +7,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
-  margin: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.display-image {
+  margin: 20px;
+  max-width: 400px;
+  max-height: 400px;
 }

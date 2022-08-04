@@ -1,86 +1,59 @@
-// import React, { Component, Fragment } from 'react'
-import React, { useState, Fragment } from 'react'
+import Footer from './components/shared/Footer';
+import Nav from './components/shared/Nav'
+import React, { useRef, Fragment, useState} from 'react';
+import { useDisclosure } from '@chakra-ui/react';
+import DrawerComponent from './components/DrawerComponent';
 import { Route, Routes } from 'react-router-dom'
-import { v4 as uuid } from 'uuid'
-
-// import AuthenticatedRoute from './components/shared/AuthenticatedRoute'
-import AutoDismissAlert from './components/shared/AutoDismissAlert/AutoDismissAlert'
-import Header from './components/shared/Header'
-import RequireAuth from './components/shared/RequireAuth'
-import Home from './components/Home'
-import SignUp from './components/auth/SignUp'
+import SignUp from './components/auth/SignUp';
 import SignIn from './components/auth/SignIn'
-import SignOut from './components/auth/SignOut'
-import ChangePassword from './components/auth/ChangePassword'
+import Feed from './components/post/Feed';
+import MyIndex from './components/post/MyIndex';
+import { v4 as uuid } from 'uuid'
+import Create from './components/post/Create';
 
-const App = () => {
+function App() {
 
   const [user, setUser] = useState(null)
-  const [msgAlerts, setMsgAlerts] = useState([])
-
-  console.log('user in app', user)
-  console.log('message alerts', msgAlerts)
   const clearUser = () => {
-    console.log('clear user ran')
+    // console.log('clear user ran')
     setUser(null)
   }
 
-	const deleteAlert = (id) => {
-		setMsgAlerts((prevState) => {
-			return (prevState.filter((msg) => msg.id !== id) )
-		})
-	}
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = useRef();
+  
+  return (
 
-	const msgAlert = ({ heading, message, variant }) => {
-		const id = uuid()
-		setMsgAlerts(() => {
-			return (
-				[{ heading, message, variant, id }]
-      )
-		})
-	}
-
-		return (
-			<Fragment>
-				<Header user={user} />
-				<Routes>
-					<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
-					<Route
-						path='/sign-up'
-						element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
-					/>
-					<Route
-						path='/sign-in'
-						element={<SignIn msgAlert={msgAlert} setUser={setUser} />}
-					/>
-          <Route
-            path='/sign-out'
-            element={
-              <RequireAuth user={user}>
-                <SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path='/change-password'
-            element={
-              <RequireAuth user={user}>
-                <ChangePassword msgAlert={msgAlert} user={user} />
-              </RequireAuth>}
-          />
-				</Routes>
-				{msgAlerts.map((msgAlert) => (
-					<AutoDismissAlert
-						key={msgAlert.id}
-						heading={msgAlert.heading}
-						variant={msgAlert.variant}
-						message={msgAlert.message}
-						id={msgAlert.id}
-						deleteAlert={deleteAlert}
-					/>
-				))}
-			</Fragment>
-		)
+    <>
+    <Nav user={user} ref={btnRef} onOpen={onOpen}/>
+    <Routes>
+      <Route
+        path="/"
+        element={<Feed 
+          user={user}
+        />}
+        />
+      <Route
+        path="/signup"
+        element={<SignUp setUser={setUser}/>}
+        />
+      <Route
+      path="/signin"
+      element={<SignIn setUser={setUser}/>}
+      />
+      <Route
+      path="/myposts"
+      element={<MyIndex user={user}/>}
+      />
+      <Route
+      path="/addpost"
+      element={<Create user={user}/>}
+      />
+    </Routes>
+    <Footer />
+    <DrawerComponent user={user} isOpen={isOpen} onClose={onClose} btnRef={btnRef} />
+    </>
+  );
 }
 
-export default App
+export default App;
