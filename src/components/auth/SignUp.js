@@ -17,8 +17,8 @@ const SignUp = (props) => {
     password: ""
   }
 
-  const someThingHappens = (message) => {
-    newToast({ message: message, status: "error" });
+  const someThingHappens = (message, status) => {
+    newToast({ message: message, status: status });
   };
 
   const onSubmit = (values) => {
@@ -27,6 +27,7 @@ const SignUp = (props) => {
     const credentials = values
     signUp(credentials)
       .then(user => {        
+        someThingHappens("signup success", "success")
         console.log('signed up user')
         signIn(credentials)
           .then(res => {
@@ -34,9 +35,9 @@ const SignUp = (props) => {
             console.log('res.data.user', res.data.user)
             navigate('/')
           })
-          .catch(error => console.log(error))
+          .catch(error => someThingHappens("signin error", "error"))
       })
-      .catch(error => console.log(error))
+      .catch(error => someThingHappens("signup error", "error"))
 
   }
 

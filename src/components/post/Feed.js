@@ -1,5 +1,7 @@
 import React from 'react'
 import Post from '../shared/Post'
+import { Button } from '@chakra-ui/react'
+
 const Feed = () => {
 
   const samplepost = {

@@ -7,7 +7,7 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 const SignIn = (props) => {
-
+  const [toast, newToast] = useToastHook();
     const {setUser } = props
   const initialV = {
     email: "",
@@ -15,15 +15,20 @@ const SignIn = (props) => {
   }
   const navigate = useNavigate()
 
+  const someThingHappens = (message, status) => {
+    newToast({ message: message, status: status });
+  };
+
   const onSubmit = (values) => {
     const credentials = values
     signIn(credentials)
           .then(res => {
             setUser(res.data.user)
+            someThingHappens("signin success", "success")
             console.log('res.data.user', res.data.user)
             navigate('/')
           })
-          .catch(error => console.log(error))
+          .catch(error => someThingHappens("signin error", "error"))
 
   }
 

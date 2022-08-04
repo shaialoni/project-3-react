@@ -11,9 +11,14 @@ import Feed from './components/post/Feed';
 import MyIndex from './components/post/MyIndex';
 import { v4 as uuid } from 'uuid'
 import Create from './components/post/Create';
+import { useToastHook } from './components/shared/Toast'
 
 function App() {
 
+  const [toast, newToast] = useToastHook();
+  const someThingHappens = (message, status) => {
+    newToast({ message: message, status: status });
+  };
   const [user, setUser] = useState(null)
   const navigate = useNavigate()
   const clearUser = () => {
@@ -22,10 +27,11 @@ function App() {
       .then(res => {
         console.log('Logged out')
         setUser(null)
+        someThingHappens("logged out success", "success")
         console.log('new state of user', user)
         navigate('/')
       })
-      .catch(console.error)
+      .catch(error => someThingHappens("logged out", "error"))
   }
 
   const { isOpen, onOpen, onClose } = useDisclosure();
