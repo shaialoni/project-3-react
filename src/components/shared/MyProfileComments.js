@@ -16,19 +16,16 @@ const MyProfileComments = (props) => {
     alert(inputEl.current.value)
   }
 
-  const commentList = comments.map(comment => {
+  const commentList = comments.map((comment, i) => {
     return (
-        <>
-          <Box w='100%' m="1" display={"flex"} >
-            <Text fontWeight={"bold"} fontSize={"xs"}>
-            {comment.owner.email}
-            </Text>
-            <pre> </pre>
-            <Text fontSize={"xs"} overflowWrap={"break-word"}>
-            {comment.note}
-            </Text>
-          </Box>
-        </>
+      <Box w='100%' m="1" display={"flex"} key={i}>
+        <Text fontWeight={"bold"} fontSize={"xs"} mr="1">
+        {comment.owner.email}
+        </Text>
+        <Text fontSize={"xs"} overflowWrap={"break-word"}>
+        {comment.note}
+        </Text>
+      </Box>
         
     )
 })

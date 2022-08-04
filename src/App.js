@@ -34,7 +34,12 @@ function App() {
   return (
 
     <>
-    <Nav user={user} ref={btnRef} onOpen={onOpen}/>
+    <Nav 
+      user={user} 
+      ref={btnRef} 
+      onOpen={onOpen} 
+      clearUser={clearUser}
+    />
     <Routes>
       <Route
         path="/"
@@ -60,7 +65,7 @@ function App() {
       />
     </Routes>
     <Footer />
-    <DrawerComponent user={user} isOpen={isOpen} onClose={onClose} btnRef={btnRef} />
+    <DrawerComponent user={user} isOpen={isOpen} onClose={onClose} btnRef={btnRef} clearUser={clearUser} />
     </>
   );
 }

@@ -10,7 +10,7 @@ import {
   Flex,
 } from '@chakra-ui/react';
 
-const DrawerComponent = ({ isOpen, onClose, btnRef, user }) => {
+const DrawerComponent = ({ isOpen, onClose, btnRef, user, clearUser }) => {
   return (
     <Drawer
       isOpen={isOpen}
@@ -31,7 +31,7 @@ const DrawerComponent = ({ isOpen, onClose, btnRef, user }) => {
             {user ? (
               <>
                 <Link href="/myposts" mb="3">My Profile</Link>
-                <Link href="/logout" mb="3">Logout</Link>
+                <Link onClick={clearUser} mb="3">Logout</Link>
               </>
             ) : 
             (

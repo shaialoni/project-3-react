@@ -13,7 +13,7 @@ import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { FaAlignJustify } from 'react-icons/fa';
 import { Icon } from '@chakra-ui/react';
 
-const Nav = ({ onOpen, ref, user }) => {
+const Nav = ({ onOpen, ref, user, clearUser }) => {
   const [scroll, setScroll] = useState(false);
   const { colorMode, toggleColorMode } = useColorMode();
   const navBg = useColorModeValue('white', 'blackAlpha.200');
@@ -74,11 +74,9 @@ const Nav = ({ onOpen, ref, user }) => {
 
         {isLargerThanMD ? (
           <>
-            <a target="_blank" rel="noreferrer" href="https://appseed.us/apps/react/" fontSize="md" mr="10">
-              { user ? 'Logout' : (<a href="/signin" fontSize="md" >Log In </a>)
+            { user ? <Link onClick={clearUser} mb="3">Logout</Link> : <Link href="/signin" fontSize="md" >Log In </Link>
             
              }
-            </a>
           </>
         ) : (
           <IconButton ref={ref} onClick={onOpen}>

@@ -35,8 +35,8 @@ const Feed = () => {
 
 }
 const posts = [samplepost, samplepost2]
-const myFeed = posts.map(post => {
-  return <Post post={post} />
+const myFeed = posts.map((post, i) => {
+  return <Post post={post} key={i}/>
 })
 
   return (

@@ -15,21 +15,18 @@ const FeedComments = (props) => {
     inputEl.current.focus();
     alert(inputEl.current.value)
   }
-  const commentList = comments.map(comment => {
-      return (
-          <>
-            <Box w='100%' m="1" display={"flex"} >
-              <Text fontWeight={"bold"}>
-              {comment.owner.email}
-              </Text>
-              <pre> </pre>
-              <Text overflowWrap={"break-word"}>
-              {comment.note}
-              </Text>
-            </Box>
-          </>
-          
-      )
+  const commentList = comments.map((comment, i) => {
+    return (
+      <Box w='100%' m="1" display={"flex"} key={i}>
+        <Text fontWeight={"bold"} mr="1">
+        {comment.owner.email}
+        </Text>
+        <Text overflowWrap={"break-word"}>
+        {comment.note}
+        </Text>
+      </Box>
+        
+    )
   })
   return (
     <Box w='100%' h="auto"maxH={"35rem"} p={4} overflowY={"scroll"} overflowX={"hidden"}>

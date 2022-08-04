@@ -38,18 +38,17 @@ const MyIndex = (props) => {
                     note:"Click to see more" }]
   
   }
-
-    return (
-
-        <Flex
-        flexWrap={"wrap"}
-        justifyContent={"center"}
-        >
-        <Card post={samplepost}/>
-        <Card post={samplepost}/>
-        
-      </Flex>
-
+  const cards = [samplepost, samplepost2]
+  const myIndex = cards.map((post, i) => {
+    return <Card post={post} key={i}/>
+  })
+  return (
+    <Flex
+      flexWrap={"wrap"}
+      justifyContent={"center"}
+    >
+        {myIndex}
+    </Flex>
   )
 }
 
