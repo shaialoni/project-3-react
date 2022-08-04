@@ -33,37 +33,6 @@ We will be using React for our front end with RESTful routes and Moongose Expres
 ## Wireframes
 ![](planning/WireFrames.png)
 
-## Schema
-### User
-- email: string
-    - required
-    - unique
-- username: string **
-    - required
-    - unique
-- hashedPassword: string
-    - required
-- token: string
-- timestamps
-    
-### Post
-- title: string
-  - required
-- caption: string
-- image: url(?) w aws
-  - required
-- like: number
-- timestamp
-- owner:
-    - required
-
-### Comment (sub-schema)
-- comment: string
-  - required
-- timestamp
-- owner: 
-  - required
-
 ## Development Roles 
 - Front-End SME: Trevor Zou
 - Back-End SME: Shai Aloni 
