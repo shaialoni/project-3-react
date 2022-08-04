@@ -30,63 +30,8 @@ A social media app that allow users to "SPOTLIGHT" a major current event, a spec
 ## Technology
 We will be using React for our front end with RESTful routes and Moongose Express for our back end with CRUD actions. The app will use AWS to store the uploaded images, MongoDB Atlas as the database, and Heroku to launch.
 
-## ERD
-![](planning/ERD.png)
-
 ## Wireframes
 ![](planning/WireFrames.png)
-
-## Route Table
-
-### Authentication
-| Verb   | URI Pattern         | Controller#Action |
-| ------ | ------------------- | ----------------- |
-| POST   | `/sign-up`          | `users#signup`    |
-| POST   | `/sign-in`          | `users#signin`    |
-| PATCH  | `/change-password/` | `users#changepw`  |
-| DELETE | `/sign-out/`        | `users#signout `  |
-
-### USER'S POST
-| Verb   | URI Pattern | Controller#Action    |
-| ------ | ----------- | -------------------- |
-| GET    | `/`         | `other users' index` |
-| GET    | `/:userId`  | `my index`           |
-| POST   | `/`         | `add`                |
-| PATCH  | `/:postId`  | `update`             |
-| DELETE | `/:postId`  | `destroy`            |
-
-### COMMENT
-| Verb   | URI Pattern           | Controller#Action |
-| ------ | --------------------- | ----------------- |
-| POST   | `/:postId/:commentId` | `add`             |
-| PATCH  | `/:postId/:commentId` | `update`          |
-| DELETE | `/:postId/:commentId` | `destroy`         |
-
-## Schema
-### User
-- email: string
-    - required
-    - unique
-- username: string
-    - required
-    - unique
-- hashedPassword: string
-    - required
-- token: string
-- timestamps
-    
-### Post
-- title: string
-- caption: string
-- image: url(?) w aws
-- like: boolean (reach goal)
-- follow: boolean (reach goal)
-- timestamp:
-- owner: mongoose.Schema.Types.ObjectId
-    - required
-
-### Comment (sub-schema)
-- comment: string (reach goal)
 
 ## Development Roles 
 - Front-End SME: Trevor Zou
