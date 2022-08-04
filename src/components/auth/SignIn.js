@@ -25,6 +25,7 @@ const SignIn = (props) => {
       onSubmit={onSubmit}
       heading={"Log In"}
       code={"login"}
+      buttonText={"Log In"}
       />
     </>
     

@@ -2,6 +2,7 @@ import React from 'react'
 import Post from '../shared/Post'
 import PostForm from '../shared/PostForm'
 
+
 const Create = () => {
     const samplepost = {
         title: "Hey FHJEHWFKWJH FKWJEFHW",

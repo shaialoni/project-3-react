@@ -1,70 +1,57 @@
-import { Formik, Field } from "formik";
-import {
-  Box,
-  Button,
-  Flex,
-  FormControl,
-  FormLabel,
-  Input,
-  VStack,
-  Text,
-  Textarea,
-} from "@chakra-ui/react";
+import { Form, Button, Spinner } from 'react-bootstrap'
+import { useState } from 'react'
+import axios from 'axios'
+import apiUrl from '../../apiConfig'
 
-export default function PostForm(props) {
-  const {initialV, onSubmit, heading } = props
-  return (
-    <>
+
+const PostForm = (props) => {
+	// const { msgAlert, user } = props
+	// console.log('props in home', props)
+
+	const [ selected, setSelected ] = useState(null)
+	const [ upload, setUpload ] = useState({})
+	const [ loading, setLoading ] = useState(null)
+
+	const handleChange = (e) => {
+		e.preventDefault()
+		setSelected(e.target.files[0])
+	}
+
+	const handleSubmit =(e) => {
+		e.preventDefault()
+		// setLoading(true)
+		// const data = new FormData()
+		// data.append('upload', selected)
+		// axios({
+		// 	url: `${apiUrl}/uploads`,
+		// 	method: 'POST',
+		// 	//short for data: data
+		// 	data
+		// })
+		// 	.then(res => setUpload(res.data.upload))
+		// 	.then(() => setLoading(false))
+		// 	.catch(console.error)
+	}
+	return (
+		<>
+			
+			{upload.url ? ( <img className={'display-image'} alt={upload.url} src={upload.url}/> ) : '' }
+			{loading ? (<Spinner animation="border" />) : ''}
+			{/* form for file input */}
+			<Form onSubmit={handleSubmit}>
+      <Form.Group>
+        <Form.Label>Title</Form.Label>
+        <Form.Control name='title' type='text' />
+      </Form.Group>  
+			<Form.Group className="mb-3">
+				<Form.Label>Default file input example</Form.Label>
+				<Form.Control type="file" onChange={handleChange} />
+			</Form.Group>
+			<Button type="submit" variant="outline-secondary">Submit</Button>
+			</Form>
       
-      <Flex 
-      align="center" 
-      justify="center" h="100vh">
-      <Box bg="gray:50" p={6} rounded="md" w={80}>
-      <Text
-          fontSize='4xl'
-          textAlign={"center"}
-          >{heading}</Text>
-        <Formik
-          initialValues={initialV}
-          onSubmit={onSubmit}
-        >
-          {({ handleSubmit, errors, touched }) => (
-            <form onSubmit={handleSubmit}>
-              <VStack spacing={4} align="flex-start">
-              <FormControl>
-                  <FormLabel textAlign={"center"}htmlFor="title">Title</FormLabel>
-                  <Input
-                    size={"sm"}
-                    fontSize={"xs"}
-                    id="title"
-                    name="title"
-                    type="text"
-                    variant="filled"
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormLabel textAlign={"center"}htmlFor="caption">Caption</FormLabel>
-                  <Textarea
-                    size={"sm"}
-                    fontSize={"xs"}
-                    id="caption"
-                    name="caption"
-                    type="text"
-                    variant="filled"
-                  />
-                </FormControl>
-                
-                <Button type="submit" colorScheme="purple" width="full">
-                  {heading}
-                </Button>
-
-              </VStack>
-            </form>
-          )}
-        </Formik>
-      </Box>
-    </Flex>
-    </>
-
-  );
+		</>
+	)
 }
+
+export default PostForm

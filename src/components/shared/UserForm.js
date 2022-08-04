@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 
 export default function UserForm(props) {
-  const {initialV, onSubmit, heading, code } = props
+  const {initialV, onSubmit, heading, code, buttonText } = props
   return (
     <>
       
@@ -63,7 +63,7 @@ export default function UserForm(props) {
                   <FormErrorMessage>{errors.password}</FormErrorMessage>
                 </FormControl>
                 <Button type="submit" colorScheme="purple" width="full">
-                  Login
+                  { buttonText }
                 </Button>
                 {(code === "signup") &&  <>
                 <Text textAlign={"center"} fontSize='xs'>Already Have an Account? <Link href="#">Login</Link></Text> 
