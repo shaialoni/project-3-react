@@ -2,7 +2,8 @@ import {
     Box,
     Badge,
     Image,
-    others
+    Button,
+    useDisclosure
   } from '@chakra-ui/react';
   import {
     Popover,
@@ -10,16 +11,21 @@ import {
     PopoverContent,
     PopoverHeader,
     PopoverBody,
-    PopoverFooter,
     PopoverArrow,
     PopoverCloseButton,
-    PopoverAnchor,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton
   } from '@chakra-ui/react'
 import MyProfileComments from './MyProfileComments';
 
 
 function Card(props) {
-
+  const { isOpen, onOpen, onClose } = useDisclosure()
    const {post} = props
   
     return (
@@ -65,9 +71,23 @@ function Card(props) {
             </Box>
           </Box>
 
-          <Badge mt="2" mr="1" borderRadius='full' px='2' colorScheme='teal'>
+          <Badge role='button'  onClick={onOpen} mt="2" mr="1" borderRadius='full' px='2' colorScheme='teal'>
               {"Edit"}
             </Badge>
+            <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Edit Post</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+              </ModalBody>
+              <ModalFooter>
+                <Button colorScheme='blue' mr={3} onClick={onClose}>
+                  Close
+                </Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
             <Popover>
             <PopoverTrigger>
             <Badge role='button' mt="2" borderRadius='full' px='2' colorScheme='teal'>
