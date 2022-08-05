@@ -15,6 +15,7 @@ import {createUrl} from '../../api/aws'
 import {createPost}	from '../../api/post'
 import { useNavigate } from 'react-router-dom';
 import {useToastHook} from './../shared/Toast'
+import Loading from './Loading';
 
 function FileUploadPage({ user }){
 	const [file, setFile] = useState()
@@ -63,7 +64,8 @@ function FileUploadPage({ user }){
 			console.log("NEWPOST: ",newPost)
 			// console.log('USER ======>', user)
 			createPost(user, newPost)
-				// .then(navigate('/'))
+				.then(setLoading(true))
+				.then(navigate('/'))
 				.catch(err => {
 					console.log(err)
 					someThingHappens("create post error", "error")
@@ -74,17 +76,16 @@ function FileUploadPage({ user }){
 			console.log(err)
 			someThingHappens("image upload error", "error")
 		})
-		//dafsdfasdf
   }
-
-  ////afsdfawef
-  ////fawefawefawef
+  
+  if (loading) {
+	return <Loading/>
+  }
 
   return (
 
 	
       <Box bg="gray:50" p={6} rounded="md" w={64}>
-	  {upload.url ? ( <img className={'display-image'} alt={upload.url} src={upload.url}/> ) : '' }
       <Text
           fontSize='4xl'
           textAlign={"center"}

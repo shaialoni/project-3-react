@@ -21,13 +21,12 @@ import {
     ModalBody,
     ModalCloseButton
   } from '@chakra-ui/react'
+import { useState } from 'react';
 import MyProfileComments from './MyProfileComments';
 import PostForm from "./PostForm"
 
-
-function Card(props) {
+function Card({ post, user, postId, onDelete }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
-   const {post} = props
   
     return (
       <Box maxW='xs' borderWidth='1px' borderRadius='lg' overflow='hidden' m="2">
@@ -108,7 +107,9 @@ function Card(props) {
               </PopoverBody>
             </PopoverContent>
           </Popover>
-          
+          <Badge role='button' mt="2" borderRadius='full' px='2' colorScheme='red' onClick={() => onDelete(user, postId)}>
+            {"Delete Post"}
+          </Badge>
         </Box>
       </Box>
     )
