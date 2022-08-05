@@ -7,7 +7,7 @@ import messages from '../shared/AutoDismissAlert/messages'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-const ChangePassword = (props) => {
+const ChangePassword = ({ msgAlert, user }) => {
 	// constructor(props) {
 	// 	super(props)
 
@@ -24,7 +24,7 @@ const ChangePassword = (props) => {
 	const onChangePassword = (event) => {
 		event.preventDefault()
 
-		const { msgAlert, user } = props
+		// const { msgAlert, user } = props
         console.log('the user', user)
         
 

@@ -16,7 +16,7 @@ import { useToastHook } from './components/shared/Toast'
 function App() {
 
   const [toast, newToast] = useToastHook();
-  const someThingHappens = (message, status) => {
+  const msgAlert = (message, status) => {
     newToast({ message: message, status: status });
   };
   const [user, setUser] = useState(null)
@@ -27,11 +27,11 @@ function App() {
       .then(res => {
         console.log('Logged out')
         setUser(null)
-        someThingHappens("logged out success", "success")
+        msgAlert("logged out success", "success")
         console.log('new state of user', user)
         navigate('/')
       })
-      .catch(error => someThingHappens("logged out", "error"))
+      .catch(error => msgAlert("Error logging out", "error"))
   }
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -51,27 +51,28 @@ function App() {
         path="/"
         element={<Feed 
           user={user}
+          msgAlert={msgAlert}
         />}
         />
       <Route
         path="/signup"
-        element={<SignUp setUser={setUser}/>}
+        element={<SignUp setUser={setUser} msgAlert={msgAlert}/>}
         />
       <Route
       path="/signin"
-      element={<SignIn setUser={setUser}/>}
+      element={<SignIn setUser={setUser} msgAlert={msgAlert}/>}
       />
       <Route
       path="/myposts"
-      element={<MyIndex user={user}/>}
+      element={<MyIndex user={user} msgAlert={msgAlert}/>}
       />
       <Route
       path="/addpost"
-      element={<Create user={user}/>}
+      element={<Create user={user} msgAlert={msgAlert}/>}
       />
     </Routes>
     <Footer />
-    <DrawerComponent user={user} isOpen={isOpen} onClose={onClose} btnRef={btnRef} clearUser={clearUser} />
+    <DrawerComponent user={user} isOpen={isOpen} onClose={onClose} btnRef={btnRef} clearUser={clearUser} msgAlert={msgAlert}/>
     </>
   );
 }

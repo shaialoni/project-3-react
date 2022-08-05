@@ -4,7 +4,7 @@ import axios from 'axios'
 import apiUrl from './../apiConfig'
 
 
-const Home = (props) => {
+const Home = ({ msgAlert }) => {
 	// const { msgAlert, user } = props
 	// console.log('props in home', props)
 
@@ -28,9 +28,14 @@ const Home = (props) => {
 			//short for data: data
 			data
 		})
-			.then(res => setUpload(res.data.upload))
+			.then(res => {
+				setUpload(res.data.upload)
+				msgAlert('Image upload success', 'success')
+			})
 			.then(() => setLoading(false))
-			.catch(console.error)
+			.catch(err => {
+				msgAlert('Error uploading image', 'error')
+			})
 	}
 	return (
 		<>

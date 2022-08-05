@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { deletePost } from '../../api/post';
 
 
-const MyIndex = ({ user }) => {
+const MyIndex = ({ user, msgAlert }) => {
   const [ cards, setCards ] = useState(null)
   const [ deleted, setDeleted ] = useState(false)
 
@@ -30,14 +30,21 @@ const MyIndex = ({ user }) => {
         setCards(res.data.posts)
       })
       .catch(err => {
+        msgAlert('Error getting posts', 'error')
         console.log(err)
       })
   }, [])
   
   const onDelete = (user, postId) => {
     deletePost(user, postId)
-      .then(() => setDeleted(prev => !prev))
-      .catch(console.error)
+      .then(() => {
+        setDeleted(prev => !prev)
+        msgAlert('Post deleted successfuly!', 'success') 
+      })
+      .catch(err => {
+        msgAlert('Error deleting post', 'error')
+        console.log(err)
+      })
   }
 
    //this happens if posts == null
@@ -58,11 +65,10 @@ const MyIndex = ({ user }) => {
         <Text m='5'>
           No posts, to create a post follow this link
         </Text>
-        <Link onClick={() => navigate('/addpost')} fontSize="md" m='5'>
+        <Link onClick={() => navigate('/addpost')} fontSize="md" m='5' color='blue'>
           Add Post
         </Link>
       </Box>
-
     )
   }
   

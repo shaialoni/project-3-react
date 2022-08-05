@@ -15,9 +15,9 @@ import React, {useState} from 'react';
 import FeedComments from './FeedComments';
 
 
-const Post = (props) => {
+const Post = ({ post, msgAlert }) => {
   const [isLargerThanLG] = useMediaQuery('(min-width: 62em)');
-  const {post} = props
+  //const {post} = props
   const [commentToggle, setCommentToggle] = useState(false)
   return (
     <Flex

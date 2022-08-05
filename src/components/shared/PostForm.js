@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import {useToastHook} from './../shared/Toast'
 import Loading from './Loading';
 
-function FileUploadPage({ user }){
+function FileUploadPage({ user, msgAlert }){
 	const [file, setFile] = useState()
 	const [title, setTitle] = useState("")
 	const [caption, setCaption ] = useState("")
@@ -31,9 +31,9 @@ function FileUploadPage({ user }){
 		setFile(event.target.files[0])
 	}
 
-	const someThingHappens = (message, status) => {
-		newToast({ message: message, status: status });
-	  };
+	// const msgAlert = (message, status) => {
+	// 	newToast({ message: message, status: status });
+	//   };
 //   function handChangeTitle(event) {
 // 	  setTitle(prev => {
 // 		  return event.target.value
@@ -68,13 +68,13 @@ function FileUploadPage({ user }){
 				.then(navigate('/'))
 				.catch(err => {
 					console.log(err)
-					someThingHappens("create post error", "error")
+					msgAlert("Create post error", "error")
 				})
 		})
 		.then(() => setLoading(false))
 		.catch(err => {
 			console.log(err)
-			someThingHappens("image upload error", "error")
+			msgAlert("Image upload error", "error")
 		})
   }
   

@@ -15,7 +15,7 @@ import { FaAlignJustify } from 'react-icons/fa';
 import { Icon } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom'
 
-const Nav = ({ onOpen, ref, user, clearUser }) => {
+const Nav = ({ onOpen, ref, user, clearUser, msgAlert }) => {
   const [scroll, setScroll] = useState(false);
   const { colorMode, toggleColorMode } = useColorMode();
   const navBg = useColorModeValue('white', 'blackAlpha.200');
