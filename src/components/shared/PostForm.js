@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
-import axios
- from 'axios';
- import {
+import {
 	FormControl,
 	FormLabel,
 	FormErrorMessage,
@@ -12,12 +10,15 @@ import axios
 	Text,
 	Button,
 	Textarea
-  } from '@chakra-ui/react'
+	} from '@chakra-ui/react'
+import {createUrl} from '../../api/aws'
 
 function FileUploadPage(){
 	const [file, setFile] = useState()
 	const [title, setTitle] = useState("")
 	const [caption, setCaption ] = useState("")
+	const [ upload, setUpload ] = useState({})
+	const [ loading, setLoading ] = useState(null)
 
   function handleChangeFile(event) {
     setFile(event.target.files[0])
@@ -33,21 +34,15 @@ function FileUploadPage(){
   function handleSubmit(event) {
     event.preventDefault()
     // const url = 'http://localhost:3000/uploadFile';
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('fileName', file.name);
-	formData.append('title', (title))
-	formData.append('caption', caption)
-	console.log(formData.get("title"))
-	// alert(file)
-    // const config = {
-    //   headers: {
-    //     'content-type': 'multipart/form-data',
-    //   },
-    // };
-    // axios.post(url, formData, config).then((response) => {
-    //   console.log(response.data);
-    // });
+    const data = new FormData();
+    data.append('upload', file);
+    // data.append('fileName', file.name);
+	// data.append('title', (title))
+	// data.append('caption', caption)
+	createUrl(data)
+		.then(res => setUpload(res.data.upload))
+		.then(() => setLoading(false))
+		.catch(console.error)
 
   }
 
@@ -55,6 +50,7 @@ function FileUploadPage(){
 
 	
       <Box bg="gray:50" p={6} rounded="md" w={64}>
+	  {upload.url ? ( <img className={'display-image'} alt={upload.url} src={upload.url}/> ) : '' }
       <Text
           fontSize='4xl'
           textAlign={"center"}
