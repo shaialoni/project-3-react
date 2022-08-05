@@ -9,8 +9,11 @@ import {
   Link,
   Flex,
 } from '@chakra-ui/react';
+import { useNavigate, Navigate } from 'react-router-dom';
 
 const DrawerComponent = ({ isOpen, onClose, btnRef, user, clearUser }) => {
+  const navigate = useNavigate()
+
   return (
     <Drawer
       isOpen={isOpen}
@@ -23,19 +26,40 @@ const DrawerComponent = ({ isOpen, onClose, btnRef, user, clearUser }) => {
 
       <DrawerContent>
         <DrawerCloseButton />
-        <DrawerHeader>Menu</DrawerHeader>
+        <DrawerHeader>Navigation Menu</DrawerHeader>
 
         <DrawerBody>
           <Flex flexDirection="column">
-            <Link href="/" mb="3">Feed</Link>
+            <Link 
+              onClick={() => navigate('/')} 
+              mb="3"
+            >
+              Feed
+            </Link>
+            <Link 
+              onClick={() => navigate('/addpost')}
+              mb='3'
+            >
+              Add Post
+            </Link>
             {user ? (
               <>
-                <Link href="/myposts" mb="3">My Profile</Link>
+                <Link 
+                  onClick={() => navigate('/myposts')} 
+                  mb='3'
+                >
+                  My Posts
+                </Link>
+                <Link 
+                  onClick={() => navigate('/myposts')} 
+                  mb="3"
+                >
+                  My Profile</Link>
                 <Link onClick={clearUser} mb="3">Logout</Link>
               </>
             ) : 
             (
-              <Link href="/signin" mb="3">Login</Link>
+              <Link onClick={() => navigate("/signin")} mb="3">Login</Link>
             )
             }
           </Flex>

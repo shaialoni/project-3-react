@@ -15,7 +15,7 @@ import { FaAlignJustify } from 'react-icons/fa';
 import { Icon } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom'
 
-const Nav = ({ onOpen, ref, user, clearUser, msgAlert }) => {
+const Nav = ({ onOpen, ref, user, clearUser }) => {
   const [scroll, setScroll] = useState(false);
   const { colorMode, toggleColorMode } = useColorMode();
   const navBg = useColorModeValue('white', 'blackAlpha.200');
@@ -56,10 +56,39 @@ const Nav = ({ onOpen, ref, user, clearUser, msgAlert }) => {
           Add Post
         </Link>
         { user ? (
-          <Link onClick={() => navigate("/myposts")} fontSize="md" ml={3}>
-            My Posts
-          </Link>) 
-          : ''
+          <>
+            <Link 
+              onClick={() => navigate("/myposts")} 
+              fontSize="md" 
+              ml={6}
+            >
+              My Posts
+            </Link>
+            <Link 
+              onClick={() => navigate('/myposts')} 
+              fontSize="md" 
+              ml={6}
+            >
+              My Profile
+            </Link>
+            <Link 
+              onClick={clearUser} 
+              fontSize="md" 
+              ml={6}
+            >
+              Logout
+            </Link>
+          </>) 
+          :
+          (
+            <Link 
+              onClick={() => navigate("/signin")} 
+              fontSize="md" 
+              ml={6}
+            >
+              Login
+            </Link>
+          )
         }
         
         </>
