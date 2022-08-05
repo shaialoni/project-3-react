@@ -20,3 +20,13 @@ export const getAllPosts = () => {
         url: apiUrl + '/posts'  
     })
 }
+
+export const getAllMyPosts = (user) => {
+    return axios({
+        method: 'GET',
+        url: apiUrl + '/myPosts',
+        headers: {
+            Authorization: `Token token=${user.token}`,
+        },  
+    })
+}

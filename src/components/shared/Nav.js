@@ -49,14 +49,14 @@ const Nav = ({ onOpen, ref, user, clearUser }) => {
         <>
         
 
-        <Link href="/" fontSize="md" ml={6}>
+        <Link onClick={() => navigate('/')} fontSize="md" ml={6}>
           Feed
         </Link>
-        <Button onClick={() => navigate('/addpost')} fontSize="md" ml={6}>
+        <Link onClick={() => navigate('/addpost')} fontSize="md" ml={6}>
           Add Post
-        </Button>
+        </Link>
         { user ? (
-          <Link href="/myposts" fontSize="md" ml={3}>
+          <Link onClick={() => navigate("/myposts")} fontSize="md" ml={3}>
             My Posts
           </Link>) 
           : ''

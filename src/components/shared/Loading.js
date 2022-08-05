@@ -1,11 +1,11 @@
 import React from 'react'
-import { CircularProgress } from '@chakra-ui/react'
+import { CircularProgress, Box } from '@chakra-ui/react'
 
 const Loading = () => {
   return (
-    <div>
+    <Box align='center' justify='center' m='5'>
     <CircularProgress isIndeterminate color='green.300' />
-    </div>
+    </Box>
   )
 }
 
