@@ -1,57 +1,114 @@
-import { Form, Button, Spinner } from 'react-bootstrap'
-import { useState } from 'react'
-import axios from 'axios'
-import apiUrl from '../../apiConfig'
+import React, {useState} from 'react';
+import axios
+ from 'axios';
+ import {
+	FormControl,
+	FormLabel,
+	FormErrorMessage,
+	FormHelperText,
+	Input,
+	Flex,
+	Box,
+	Text,
+	Button,
+	Textarea
+  } from '@chakra-ui/react'
 
+function FileUploadPage(){
+	const [file, setFile] = useState()
+	const [title, setTitle] = useState("")
+	const [caption, setCaption ] = useState("")
 
-const PostForm = (props) => {
-	// const { msgAlert, user } = props
-	// console.log('props in home', props)
+  function handleChangeFile(event) {
+    setFile(event.target.files[0])
+  }
 
-	const [ selected, setSelected ] = useState(null)
-	const [ upload, setUpload ] = useState({})
-	const [ loading, setLoading ] = useState(null)
+//   function handChangeTitle(event) {
+// 	  setTitle(prev => {
+// 		  return event.target.value
+// 	  })
+// 	  console.log(title)
+//   }
+  
+  function handleSubmit(event) {
+    event.preventDefault()
+    // const url = 'http://localhost:3000/uploadFile';
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('fileName', file.name);
+	formData.append('title', (title))
+	formData.append('caption', caption)
+	console.log(formData.get("title"))
+	// alert(file)
+    // const config = {
+    //   headers: {
+    //     'content-type': 'multipart/form-data',
+    //   },
+    // };
+    // axios.post(url, formData, config).then((response) => {
+    //   console.log(response.data);
+    // });
 
-	const handleChange = (e) => {
-		e.preventDefault()
-		setSelected(e.target.files[0])
-	}
+  }
 
-	const handleSubmit =(e) => {
-		e.preventDefault()
-		// setLoading(true)
-		// const data = new FormData()
-		// data.append('upload', selected)
-		// axios({
-		// 	url: `${apiUrl}/uploads`,
-		// 	method: 'POST',
-		// 	//short for data: data
-		// 	data
-		// })
-		// 	.then(res => setUpload(res.data.upload))
-		// 	.then(() => setLoading(false))
-		// 	.catch(console.error)
-	}
-	return (
-		<>
-			
-			{upload.url ? ( <img className={'display-image'} alt={upload.url} src={upload.url}/> ) : '' }
-			{loading ? (<Spinner animation="border" />) : ''}
-			{/* form for file input */}
-			<Form onSubmit={handleSubmit}>
-      <Form.Group>
-        <Form.Label>Title</Form.Label>
-        <Form.Control name='title' type='text' />
-      </Form.Group>  
-			<Form.Group className="mb-3">
-				<Form.Label>Default file input example</Form.Label>
-				<Form.Control type="file" onChange={handleChange} />
-			</Form.Group>
-			<Button type="submit" variant="outline-secondary">Submit</Button>
-			</Form>
-      
-		</>
-	)
+  return (
+
+	<Flex 
+      align="center" 
+      justify="center" h="100vh">
+      <Box bg="gray:50" p={6} rounded="md" w={64}>
+      <Text
+          fontSize='4xl'
+          textAlign={"center"}
+          >{"Upload"}
+		</Text>
+		<form onSubmit={handleSubmit}>
+		<FormControl>
+			<FormLabel htmlFor="title" textAlign={"center"}>
+				Title
+			</FormLabel>
+			<Input 
+				id="title"
+				name="title"
+				type="text"
+				onChange={(e) => setTitle(e.target.value)}
+				required>
+
+			</Input>
+		</FormControl>
+		<FormControl>
+			<FormLabel htmlFor="caption" textAlign={"center"}>
+				Caption
+			</FormLabel>
+			<Textarea 
+				id="caption"
+				name="caption"
+				type="text"
+				onChange={(e) => setCaption(e.target.value)}
+				required>
+
+			</Textarea>
+		</FormControl>
+		<FormControl>
+			<FormLabel textAlign={"center"}>
+				Image
+			</FormLabel>
+			<Input as={Input} type="file" onChange={handleChangeFile} border={"none"} required
+			/>
+		</FormControl>
+		<Button type="submit" width="full">Upload</Button>
+		</form>
+		
+		</Box>
+	</Flex>
+    /* <div className="App">
+        <form onSubmit={handleSubmit}>
+          <h1>React File Upload</h1>
+          <input type="file" onChange={handleChangeFile}/>
+          <button type="submit">Upload</button>
+        </form>
+    </div> */
+  );
 }
 
-export default PostForm
+export default FileUploadPage

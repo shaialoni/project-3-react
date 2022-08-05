@@ -49,7 +49,9 @@ const Nav = ({ onOpen, ref, user, clearUser }) => {
         <Link href="/" fontSize="md" ml={6}>
           Feed
         </Link>
-        <Text > <pre>  </pre> </Text>
+        <Link href="/addpost" fontSize="md" ml={6}>
+          Add Post
+        </Link>
         { user ? (
           <Link href="/myposts" fontSize="md" ml={3}>
             My Posts
@@ -79,7 +81,7 @@ const Nav = ({ onOpen, ref, user, clearUser }) => {
              }
           </>
         ) : (
-          <IconButton ref={ref} onClick={onOpen}>
+          <IconButton onClick={onOpen}>
             <Icon as={FaAlignJustify} />
           </IconButton>
         )}

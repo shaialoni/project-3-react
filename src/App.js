@@ -42,7 +42,7 @@ function App() {
     <>
     <Nav 
       user={user} 
-      ref={btnRef} 
+      // ref={btnRef} 
       onOpen={onOpen} 
       clearUser={clearUser}
     />
