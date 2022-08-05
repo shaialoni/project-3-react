@@ -13,3 +13,10 @@ export const createPost = (user, newPost) => {
 		},
 	})
 }
+
+export const getAllPosts = () => {
+    return axios({
+        method: 'GET',
+        url: apiUrl + '/posts'  
+    })
+}
