@@ -4,7 +4,7 @@ import PostForm from '../shared/PostForm'
 import { Flex } from '@chakra-ui/layout'
 
 
-const Create = () => {
+const Create = ({user}) => {
     const samplepost = {
         title: "Hey FHJEHWFKWJH FKWJEFHW",
         image: "https://picsum.photos/200/300",
@@ -36,7 +36,7 @@ const Create = () => {
     <Flex 
       align="center" 
       justify="center" h="100vh">
-      <PostForm 
+      <PostForm user={user}
       />
 
     </Flex>

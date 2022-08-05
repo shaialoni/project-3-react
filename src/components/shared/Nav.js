@@ -7,18 +7,21 @@ import {
   useColorMode,
   useColorModeValue,
   useMediaQuery,
-  Link
+  Link,
+  Button
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { FaAlignJustify } from 'react-icons/fa';
 import { Icon } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom'
 
 const Nav = ({ onOpen, ref, user, clearUser }) => {
   const [scroll, setScroll] = useState(false);
   const { colorMode, toggleColorMode } = useColorMode();
   const navBg = useColorModeValue('white', 'blackAlpha.200');
   const [isLargerThanMD] = useMediaQuery('(min-width: 48em)');
-
+  const navigate = useNavigate()
+  
   const changeScroll = () =>
     document.body.scrollTop > 80 || document.documentElement.scrollTop > 80
       ? setScroll(true)
@@ -49,9 +52,9 @@ const Nav = ({ onOpen, ref, user, clearUser }) => {
         <Link href="/" fontSize="md" ml={6}>
           Feed
         </Link>
-        <Link href="/addpost" fontSize="md" ml={6}>
+        <Button onClick={() => navigate('/addpost')} fontSize="md" ml={6}>
           Add Post
-        </Link>
+        </Button>
         { user ? (
           <Link href="/myposts" fontSize="md" ml={3}>
             My Posts

@@ -12,18 +12,26 @@ import {
 	Textarea
 	} from '@chakra-ui/react'
 import {createUrl} from '../../api/aws'
+import {createPost}	from '../../api/post'
+import { useNavigate } from 'react-router-dom';
+import {useToastHook} from './../shared/Toast'
 
-function FileUploadPage(){
+function FileUploadPage({ user }){
 	const [file, setFile] = useState()
 	const [title, setTitle] = useState("")
 	const [caption, setCaption ] = useState("")
 	const [ upload, setUpload ] = useState({})
 	const [ loading, setLoading ] = useState(null)
+	const [toast, newToast] = useToastHook()
+	const navigate = useNavigate()
 
-  function handleChangeFile(event) {
-    setFile(event.target.files[0])
-  }
+	function handleChangeFile(event) {
+		setFile(event.target.files[0])
+	}
 
+	const someThingHappens = (message, status) => {
+		newToast({ message: message, status: status });
+	  };
 //   function handChangeTitle(event) {
 // 	  setTitle(prev => {
 // 		  return event.target.value
@@ -40,9 +48,27 @@ function FileUploadPage(){
 	// data.append('title', (title))
 	// data.append('caption', caption)
 	createUrl(data)
-		.then(res => setUpload(res.data.upload))
+		.then(res => {
+			setUpload(res.data.upload)
+			const image = upload.url
+			const newPost = {
+				title,
+				caption,
+				image
+			}
+			console.log('USER ======>', user)
+			createPost(user, newPost)
+				.then(navigate('/'))
+				.catch(err => {
+					console.log(err)
+					someThingHappens("create post error", "error")
+				})
+		})
 		.then(() => setLoading(false))
-		.catch(console.error)
+		.catch(err => {
+			console.log(err)
+			someThingHappens("image upload error", "error")
+		})
 
   }
 
