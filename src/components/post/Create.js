@@ -1,6 +1,7 @@
 import React from 'react'
 import Post from '../shared/Post'
 import PostForm from '../shared/PostForm'
+import { Flex } from '@chakra-ui/layout'
 
 
 const Create = () => {
@@ -32,14 +33,13 @@ const Create = () => {
  }
 
   return (
-    <div>
+    <Flex 
+      align="center" 
+      justify="center" h="100vh">
       <PostForm 
-      initalV={initialV}
-      onSubmit={onSubmit}
-      heading={"Create Post"}
       />
 
-    </div>
+    </Flex>
   )
 }
 

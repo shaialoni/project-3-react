@@ -22,6 +22,7 @@ import {
     ModalCloseButton
   } from '@chakra-ui/react'
 import MyProfileComments from './MyProfileComments';
+import PostForm from "./PostForm"
 
 
 function Card(props) {
@@ -79,7 +80,9 @@ function Card(props) {
             <ModalContent>
               <ModalHeader>Edit Post</ModalHeader>
               <ModalCloseButton />
-              <ModalBody>
+              <ModalBody align="center" 
+              justify="center">
+              <PostForm />
               </ModalBody>
               <ModalFooter>
                 <Button colorScheme='blue' mr={3} onClick={onClose}>

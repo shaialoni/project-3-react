@@ -53,9 +53,7 @@ function FileUploadPage(){
 
   return (
 
-	<Flex 
-      align="center" 
-      justify="center" h="100vh">
+	
       <Box bg="gray:50" p={6} rounded="md" w={64}>
       <Text
           fontSize='4xl'
@@ -100,7 +98,6 @@ function FileUploadPage(){
 		</form>
 		
 		</Box>
-	</Flex>
     /* <div className="App">
         <form onSubmit={handleSubmit}>
           <h1>React File Upload</h1>
