@@ -16,12 +16,19 @@ const Feed = () => {
         .catch(console.error)
   }, [])
 
+  //this happens if posts == null
   if (!posts) {
     return (
       <Loading align='center' justify='center'/>
     )
   }
-
+  //this happens if posts != null, but its length is 0 aka, no posts have been created
+  else if(posts.length === 0){
+    return (
+      "No posts"
+    )
+  }
+  //this happens if posts = [post1, post2]
   const myFeed = posts.map((post, i) => {
     return <Post post={post} key={i}/>
   })

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {
 	FormControl,
 	FormLabel,
@@ -24,6 +24,7 @@ function FileUploadPage({ user }){
 	const [ loading, setLoading ] = useState(null)
 	const [toast, newToast] = useToastHook()
 	const navigate = useNavigate()
+	const myUrl = useRef("")
 
 	function handleChangeFile(event) {
 		setFile(event.target.files[0])
@@ -49,16 +50,20 @@ function FileUploadPage({ user }){
 	// data.append('caption', caption)
 	createUrl(data)
 		.then(res => {
-			setUpload(res.data.upload)
-			const image = upload.url
+			// setUpload(res.data.upload)
+			
+			myUrl.current = res.data.upload.url
+			const image = myUrl.current
+			console.log("UPLOAD: ",upload, "UPLOADURL", upload.url)
 			const newPost = {
 				title,
 				caption,
 				image
 			}
-			console.log('USER ======>', user)
+			console.log("NEWPOST: ",newPost)
+			// console.log('USER ======>', user)
 			createPost(user, newPost)
-				.then(navigate('/'))
+				// .then(navigate('/'))
 				.catch(err => {
 					console.log(err)
 					someThingHappens("create post error", "error")
@@ -69,8 +74,11 @@ function FileUploadPage({ user }){
 			console.log(err)
 			someThingHappens("image upload error", "error")
 		})
-
+		//dafsdfasdf
   }
+
+  ////afsdfawef
+  ////fawefawefawef
 
   return (
 
