@@ -7,14 +7,24 @@ import {
     Text
     } from "@chakra-ui/react";
 import { AddIcon } from '@chakra-ui/icons';
+import { createComment } from '../../api/comment';
 
-const FeedComments = (props) => {
-  const inputEl = useRef(null);
-  const {comments} = props
-  const doSomething = (e) => {
+const FeedComments = ({comments, triggerRefresh, user, postId}) => {
+  const inputEl = useRef(null)
+
+
+  const addComment = (e) => {
     inputEl.current.focus();
-    alert(inputEl.current.value)
+    createComment(user, postId, inputEl.current.value)
+      .then(() => {
+        triggerRefresh()
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    
   }
+
   const commentList = comments.map((comment, i) => {
     return (
       <Box w='100%' m="1" display={"flex"} key={i}>
@@ -33,7 +43,7 @@ const FeedComments = (props) => {
     
     <InputGroup>
     <Input ref={inputEl} placeholder='Add Comment' />
-    <InputRightElement onClick={doSomething}
+    <InputRightElement onClick={addComment}
     children={<AddIcon color='green.500' />} />
     </InputGroup>
  

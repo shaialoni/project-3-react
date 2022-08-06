@@ -15,7 +15,7 @@ import { deletePost } from '../../api/post';
 
 const MyIndex = ({ user }) => {
   const [ cards, setCards ] = useState(null)
-  const [ deleted, setDeleted ] = useState(false)
+  const [updated, setUpdated] = useState(false)
 
   const navigate = useNavigate()
 
@@ -26,19 +26,19 @@ const MyIndex = ({ user }) => {
     }
     getAllMyPosts(user)
       .then(res => {
-        console.log()
+        console.log(user)
         setCards(res.data.posts)
       })
       .catch(err => {
         console.log(err)
       })
-  }, [])
+  }, [updated])
   
-  const onDelete = (user, postId) => {
-    deletePost(user, postId)
-      .then(() => setDeleted(prev => !prev))
-      .catch(console.error)
-  }
+  // const onDelete = (user, postId) => {
+  //   deletePost(user, postId)
+  //     .then(() => {navigate('/myposts')})
+  //     .catch(console.error)
+  // }
 
    //this happens if posts == null
    if (!cards) {
@@ -47,19 +47,15 @@ const MyIndex = ({ user }) => {
     )
   }
 
-  if (deleted) {
-    setDeleted(prev => !prev)
-    navigate('/myPosts')
-  }
   //this happens if cards != null, but its length is 0 aka, no cards have been created
   else if(cards.length === 0){
     return (
-      <Box textAlign='center' justifyContent='center' fontSize='xl' m='5'>
+      <Box textAlign='center' justifyContent='center' fontSize='xl' m='5' fontWeight={"bold"}>
         <Text m='5'>
-          No posts, to create a post follow this link
+          No posts yet!
         </Text>
-        <Link onClick={() => navigate('/addpost')} fontSize="md" m='5'>
-          Add Post
+        <Link onClick={() => navigate('/addpost')} fontSize="md" m='5' fontWeight={"normal"} color="blue">
+          Create Some!
         </Link>
       </Box>
 
@@ -72,7 +68,8 @@ const MyIndex = ({ user }) => {
       key={i}
       user={user}
       postId={post._id}
-      onDelete={onDelete}
+      triggerRefresh={() => setUpdated(prev => !prev)}
+      type="edit"
     />
   })
 

@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import {useToastHook} from './../shared/Toast'
 import Loading from './Loading';
 
-function FileUploadPage({ user }){
+function FileUploadPage({ user, type }){
 	const [file, setFile] = useState()
 	const [title, setTitle] = useState("")
 	const [caption, setCaption ] = useState("")
@@ -41,7 +41,7 @@ function FileUploadPage({ user }){
 // 	  console.log(title)
 //   }
   
-  function handleSubmit(event) {
+  function handleSubmitCreate(event) {
     event.preventDefault()
     // const url = 'http://localhost:3000/uploadFile';
     const data = new FormData();
@@ -77,6 +77,10 @@ function FileUploadPage({ user }){
 			someThingHappens("image upload error", "error")
 		})
   }
+
+  function handleSubmitEdit (e) {
+	  e.preventDefault()
+  }
   
   if (loading) {
 	return <Loading/>
@@ -85,15 +89,15 @@ function FileUploadPage({ user }){
   return (
 
 	
-      <Box bg="gray:50" p={6} rounded="md" w={64}>
+      <Box bg="gray:50" p={3} rounded="md" w={64}>
       <Text
           fontSize='4xl'
           textAlign={"center"}
-          >{"Upload"}
+          >{type==="edit" ? "Edit Post" : "Create Post" }
 		</Text>
-		<form onSubmit={handleSubmit}>
+		<form onSubmit={type === "edit" ? handleSubmitEdit : handleSubmitCreate}>
 		<FormControl>
-			<FormLabel htmlFor="title" textAlign={"center"}>
+			<FormLabel htmlFor="title" textAlign={"center"} fontSize="lg">
 				Title
 			</FormLabel>
 			<Input 
@@ -105,8 +109,8 @@ function FileUploadPage({ user }){
 
 			</Input>
 		</FormControl>
-		<FormControl>
-			<FormLabel htmlFor="caption" textAlign={"center"}>
+		<FormControl my="3">
+			<FormLabel htmlFor="caption" textAlign={"center"} fontSize="lg">
 				Caption
 			</FormLabel>
 			<Textarea 
@@ -118,24 +122,19 @@ function FileUploadPage({ user }){
 
 			</Textarea>
 		</FormControl>
-		<FormControl>
-			<FormLabel textAlign={"center"}>
+		{type === "edit" ?  "" : <FormControl>
+			<FormLabel textAlign={"center"} fontSize="lg">
 				Image
 			</FormLabel>
 			<Input as={Input} type="file" onChange={handleChangeFile} border={"none"} required
 			/>
-		</FormControl>
-		<Button type="submit" width="full">Upload</Button>
+		</FormControl>}
+		
+		<Button mt="5" type="submit" width="full" colorScheme="purple">{type === "edit" ? "edit" : "create"}</Button>
 		</form>
 		
 		</Box>
-    /* <div className="App">
-        <form onSubmit={handleSubmit}>
-          <h1>React File Upload</h1>
-          <input type="file" onChange={handleChangeFile}/>
-          <button type="submit">Upload</button>
-        </form>
-    </div> */
+
   );
 }
 

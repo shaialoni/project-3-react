@@ -24,10 +24,21 @@ import {
 import { useState } from 'react';
 import MyProfileComments from './MyProfileComments';
 import PostForm from "./PostForm"
+import {deletePost} from '../../api/post'
 
-function Card({ post, user, postId, onDelete }) {
+function Card({ post, user, postId, triggerRefresh, type }) {
+  console.log(postId)
   const { isOpen, onOpen, onClose } = useDisclosure()
-  
+  console.log("user in card: ",user.token)
+
+  const onDelete = () => {
+    console.log("user: ", user)
+    deletePost(user, postId)
+      .then(() => {
+        triggerRefresh()
+      })
+      .catch(console.error)
+  }
     return (
       <Box maxW='xs' borderWidth='1px' borderRadius='lg' overflow='hidden' m="2">
         <Image maxH="xs" w="100%" src={post.image}/>
@@ -81,18 +92,15 @@ function Card({ post, user, postId, onDelete }) {
               <ModalCloseButton />
               <ModalBody align="center" 
               justify="center">
-              <PostForm />
+              <PostForm type="edit"/>
               </ModalBody>
               <ModalFooter>
-                <Button colorScheme='blue' mr={3} onClick={onClose}>
-                  Close
-                </Button>
               </ModalFooter>
             </ModalContent>
           </Modal>
             <Popover>
             <PopoverTrigger>
-            <Badge role='button' mt="2" borderRadius='full' px='2' colorScheme='teal'>
+            <Badge role='button' mt="2" borderRadius='full' px='2' colorScheme="cyan" mr="1">
             {"View Comments"}
           </Badge>
             </PopoverTrigger>
@@ -102,13 +110,13 @@ function Card({ post, user, postId, onDelete }) {
               <PopoverHeader>Comments</PopoverHeader>
               <PopoverBody>
                 <Box>
-                <MyProfileComments comments={post.comments}/>
+                <MyProfileComments comments={post.comments} user={user} postId={postId} triggerRefresh={triggerRefresh}/>
                 </Box>
               </PopoverBody>
             </PopoverContent>
           </Popover>
-          <Badge role='button' mt="2" borderRadius='full' px='2' colorScheme='red' onClick={() => onDelete(user, postId)}>
-            {"Delete Post"}
+          <Badge role='button' mt="2" borderRadius='full' px='2' colorScheme='red' onClick={() => onDelete()}>
+            {"Delete"}
           </Badge>
         </Box>
       </Box>

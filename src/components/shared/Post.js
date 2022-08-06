@@ -15,10 +15,10 @@ import React, {useState} from 'react';
 import FeedComments from './FeedComments';
 
 
-const Post = (props) => {
+const Post = ({post, triggerRefresh, user}) => {
   const [isLargerThanLG] = useMediaQuery('(min-width: 62em)');
-  const {post} = props
   const [commentToggle, setCommentToggle] = useState(false)
+  console.log("post._id", post._id)
   return (
     <Flex
     width="full"
@@ -35,7 +35,7 @@ const Post = (props) => {
       alignItems="center"
       justifyContent="center"
     >
-      <Image src={post.image} maxH="30rem" width="auto" height={"auto"} alt="Chakra Team" w="full" />
+      <Image src={post.image} maxH="30rem" width="auto" height={"auto"} alt="A Really Cool Image" w="full" />
     </Flex>
     <Spacer />
     <Flex
@@ -89,7 +89,7 @@ const Post = (props) => {
       }}>
       {commentToggle ? "Hide Comments ": "View Comments"}
       </Link>
-      {commentToggle && <FeedComments comments={post.comments}/>}
+      {commentToggle && <FeedComments comments={post.comments} user={user}triggerRefresh={triggerRefresh} postId={post._id}/>}
       
   
     </Flex>

@@ -4,9 +4,11 @@ import { Button } from '@chakra-ui/react'
 import { getAllPosts } from './../../api/post'
 import Loading from '../shared/Loading'
 
-const Feed = () => {
+const Feed = ({user}) => {
   
   const [ posts, setPosts ] = useState(null) 
+  const [updated, setUpdated] = useState(false)
+
   useEffect(() => {
       getAllPosts()
         .then(res => {
@@ -14,7 +16,7 @@ const Feed = () => {
           setPosts(res.data.posts)
         })
         .catch(console.error)
-  }, [])
+  }, [updated])
 
   //this happens if posts == null
   if (!posts) {
@@ -30,7 +32,7 @@ const Feed = () => {
   }
   //this happens if posts = [post1, post2]
   const myFeed = posts.map((post, i) => {
-    return <Post post={post} key={i}/>
+    return <Post post={post} key={i} user={user} postId={post._id} triggerRefresh={() => setUpdated(prev=>!prev)}/>
   })
 
     return (
