@@ -32,6 +32,18 @@ export default function UserForm(props) {
           {({ handleSubmit, errors, touched }) => (
             <form onSubmit={handleSubmit}>
               <VStack spacing={4} align="flex-start">
+              {code === "change" ? 
+              <FormControl>
+                  <FormLabel textAlign={"center"}htmlFor="oldpass">Old Password</FormLabel>
+                  <Field
+                    as={Input}
+                    id="oldpass"
+                    name="oldpass"
+                    type="oldpass"
+                    variant="filled"
+                  />
+                </FormControl>
+                :
                 <FormControl>
                   <FormLabel textAlign={"center"}htmlFor="email">Email Address</FormLabel>
                   <Field
@@ -41,9 +53,10 @@ export default function UserForm(props) {
                     type="email"
                     variant="filled"
                   />
-                </FormControl>
+                </FormControl>}
+                
                 <FormControl isInvalid={!!errors.password && touched.password}>
-                  <FormLabel textAlign={"center"}htmlFor="password">Password</FormLabel>
+                  <FormLabel textAlign={"center"}htmlFor="password">{code === "change" ? "New Password" : "Password"}</FormLabel>
                   <Field
                     as={Input}
                     id="password"

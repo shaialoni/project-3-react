@@ -1,4 +1,4 @@
-import React, {useRef} from 'react'
+import React, {useRef, useState} from 'react'
 import {
   Box,
   Input,
@@ -7,13 +7,23 @@ import {
   Text
   } from "@chakra-ui/react";
 import { AddIcon } from '@chakra-ui/icons';
+import { createComment } from '../../api/comment';
 
-const MyProfileComments = (props) => {
-  const {comments} = props
+const MyProfileComments = ({comments, user, postId, triggerRefresh}) => {
+
   const inputEl = useRef(null);
-  const doSomething = (e) => {
+
+
+  const addComment = (e) => {
     inputEl.current.focus();
-    alert(inputEl.current.value)
+    createComment(user, postId, inputEl.current.value)
+      .then(() => {
+        triggerRefresh()
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    
   }
 
   const commentList = comments.map((comment, i) => {
@@ -35,7 +45,7 @@ const MyProfileComments = (props) => {
     
     <InputGroup>
     <Input fontSize={"xs"}ref={inputEl} placeholder='Add Comment' />
-    <InputRightElement onClick={doSomething}
+    <InputRightElement onClick={addComment}
     children={<AddIcon color='green.500' />} />
     </InputGroup>
     <Box maxH="5rem" overflowX={"hidden"}>

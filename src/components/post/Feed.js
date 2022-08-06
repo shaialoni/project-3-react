@@ -4,9 +4,11 @@ import { Button } from '@chakra-ui/react'
 import { getAllPosts } from './../../api/post'
 import Loading from '../shared/Loading'
 
-const Feed = ({ msgAlert }) => {
+const Feed = ({ msgAlert, user }) => {
   
   const [ posts, setPosts ] = useState(null) 
+  const [updated, setUpdated] = useState(false)
+
   useEffect(() => {
       getAllPosts()
         .then(res => {
@@ -16,7 +18,7 @@ const Feed = ({ msgAlert }) => {
         .catch(err => {
           msgAlert('Error displaying posts', 'error')
           console.log(err)})
-  }, [])
+  }, [updated])
 
   //this happens if posts == null
   if (!posts) {
@@ -32,7 +34,7 @@ const Feed = ({ msgAlert }) => {
   }
   //this happens if posts = [post1, post2]
   const myFeed = posts.map((post, i) => {
-    return <Post post={post} key={i} msgAlert={msgAlert}/>
+    return <Post post={post} key={i} user={user} postId={post._id} triggerRefresh={() => setUpdated(prev=>!prev)} msgAlert={msgAlert}/>
   })
 
     return (
