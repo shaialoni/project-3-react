@@ -61,7 +61,7 @@ function App() {
         />
         <Route
         path="/changepassword"
-        element={<ChangePassword setUser={setUser}/>}
+        element={<ChangePassword user={user} setUser={setUser} msgAlert={msgAlert}/>}
         />
       <Route
       path="/signin"

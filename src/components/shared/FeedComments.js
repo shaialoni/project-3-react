@@ -40,13 +40,20 @@ const FeedComments = ({comments, triggerRefresh, user, postId}) => {
   })
   return (
     <Box w='100%' h="auto"maxH={"35rem"} p={4} overflowY={"scroll"} overflowX={"hidden"}>
-    
+    { user ? 
     <InputGroup>
-    <Input ref={inputEl} placeholder='Add Comment' />
-    <InputRightElement onClick={addComment}
-    children={<AddIcon color='green.500' />} />
+    <Input 
+      ref={inputEl} 
+      placeholder='Add Comment' 
+    />
+    <InputRightElement 
+      onClick={addComment}
+      children={<AddIcon color='green.500' />} 
+    />
     </InputGroup>
- 
+    :
+    ''
+    }
     {commentList}
     </Box>
   )

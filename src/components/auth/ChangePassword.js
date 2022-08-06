@@ -1,31 +1,50 @@
 import React, {useState} from 'react'
 import UserForm from '../shared/UserForm'
-import {useToastHook} from '../shared/Toast.js'
-import axios from 'axios'
-import apiUrl from '../../apiConfig'
-import { signUp, signIn } from '../../api/auth'
+// import {useToastHook} from '../shared/Toast.js'
+// import axios from 'axios'
+// import apiUrl from '../../apiConfig'
+import { changePassword } from '../../api/auth'
 import { useNavigate } from 'react-router-dom'
 
-const SignUp = (props) => {
+const ChangePassword = ({ setUser, msgAlert, user }) => {
+  console.log('user at the beginning', user)
   const navigate = useNavigate();
-  const [toast, newToast] = useToastHook();
+  //const [toast, newToast] = useToastHook();
 
-  const {setUser} = props
+  // const {setUser} = props
   
   const initialV = {
-    oldpass: "",
+    oldpassword: "",
     password: ""
   }
 
-  const someThingHappens = (message, status) => {
-    newToast({ message: message, status: status });
-  };
+  // const someThingHappens = (message, status) => {
+  //   newToast({ message: message, status: status });
+  // };
 
   const onSubmit = (values) => {
-
     console.log(values)
+    const password = {
+      oldPassword: values.oldpassword,
+      newPassword: values.password
+    }
+    console.log('I am the usert========>>>', user)
+    changePassword(password, user)
+      .then(res => {
+        console.log('I am the res=======>>', res)
+        msgAlert('Password changed successfuly!', 'success')
+        navigate('/')
+      })
+      .catch(err => {
+        msgAlert('Error changing password', 'error')
+      }
+        )
   }
 
+  if (!user) {
+    navigate('/signin')
+    return
+  }
   return (
     <>
       <UserForm 
@@ -40,4 +59,4 @@ const SignUp = (props) => {
   )
 }
 
-export default SignUp
+export default ChangePassword

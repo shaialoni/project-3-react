@@ -52,9 +52,7 @@ const Nav = ({ onOpen, ref, user, clearUser }) => {
         <Link onClick={() => navigate('/')} fontSize="md" ml={6}>
           Feed
         </Link>
-        <Link onClick={() => navigate('/addpost')} fontSize="md" ml={6}>
-          Add Post
-        </Link>
+        
         { user ? (
           <>
             <Link 
@@ -65,6 +63,11 @@ const Nav = ({ onOpen, ref, user, clearUser }) => {
               My Posts
             </Link>
             <Link 
+              onClick={() => navigate('/addpost')}    fontSize="md" ml={6}
+            >
+              Add Post
+            </Link>
+            <Link 
               onClick={() => navigate('/myposts')} 
               fontSize="md" 
               ml={6}
@@ -72,23 +75,15 @@ const Nav = ({ onOpen, ref, user, clearUser }) => {
               My Profile
             </Link>
             <Link 
-              onClick={clearUser} 
+              onClick={() => navigate('/changepassword')} 
               fontSize="md" 
               ml={6}
             >
-              Logout
+              Change Password
             </Link>
           </>) 
           :
-          (
-            <Link 
-              onClick={() => navigate("/signin")} 
-              fontSize="md" 
-              ml={6}
-            >
-              Login
-            </Link>
-          )
+          ''
         }
         
         </>
@@ -98,7 +93,6 @@ const Nav = ({ onOpen, ref, user, clearUser }) => {
         </>
       )}
       
-
       <Spacer />
       
       <Flex alignItems="center">
@@ -117,7 +111,6 @@ const Nav = ({ onOpen, ref, user, clearUser }) => {
             <Icon as={FaAlignJustify} />
           </IconButton>
         )}
-
       </Flex>
     </Flex>
   );

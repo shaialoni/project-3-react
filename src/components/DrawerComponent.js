@@ -36,12 +36,6 @@ const DrawerComponent = ({ isOpen, onClose, btnRef, user, clearUser }) => {
             >
               Feed
             </Link>
-            <Link 
-              onClick={() => navigate('/addpost')}
-              mb='3'
-            >
-              Add Post
-            </Link>
             {user ? (
               <>
                 <Link 
@@ -51,10 +45,22 @@ const DrawerComponent = ({ isOpen, onClose, btnRef, user, clearUser }) => {
                   My Posts
                 </Link>
                 <Link 
+                  onClick={() => navigate('/addpost')}
+                  mb='3'
+                >
+                  Add Post
+                </Link>
+                <Link 
                   onClick={() => navigate('/myposts')} 
                   mb="3"
                 >
                   My Profile</Link>
+                  <Link 
+                    onClick={() => navigate('/changepassword')} 
+                    mb='3'
+                  >
+                    Change Password
+                  </Link>
                 <Link onClick={clearUser} mb="3">Logout</Link>
               </>
             ) : 

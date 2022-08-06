@@ -34,12 +34,12 @@ export default function UserForm(props) {
               <VStack spacing={4} align="flex-start">
               {code === "change" ? 
               <FormControl>
-                  <FormLabel textAlign={"center"}htmlFor="oldpass">Old Password</FormLabel>
+                  <FormLabel textAlign={"center"}htmlFor="oldpassword">Old Password</FormLabel>
                   <Field
                     as={Input}
-                    id="oldpass"
-                    name="oldpass"
-                    type="oldpass"
+                    id="oldpassword"
+                    name="oldpassword"
+                    type="password"
                     variant="filled"
                   />
                 </FormControl>
