@@ -49,6 +49,7 @@ function FileUploadPage({ user, type }){
     // data.append('fileName', file.name);
 	// data.append('title', (title))
 	// data.append('caption', caption)
+	setLoading(true)
 	createUrl(data)
 		.then(res => {
 			// setUpload(res.data.upload)
@@ -64,11 +65,11 @@ function FileUploadPage({ user, type }){
 			console.log("NEWPOST: ",newPost)
 			// console.log('USER ======>', user)
 			createPost(user, newPost)
-				.then(setLoading(true))
 				.then(navigate('/'))
 				.catch(err => {
 					console.log(err)
 					someThingHappens("create post error", "error")
+					navigate('/')
 				})
 		})
 		.then(() => setLoading(false))
