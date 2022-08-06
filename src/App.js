@@ -6,6 +6,7 @@ import DrawerComponent from './components/DrawerComponent';
 import { useNavigate, Route, Routes } from 'react-router-dom'
 import SignUp from './components/auth/SignUp';
 import SignIn from './components/auth/SignIn'
+import ChangePassword from './components/auth/ChangePassword'
 import { signOut } from './api/auth';
 import Feed from './components/post/Feed';
 import MyIndex from './components/post/MyIndex';
@@ -56,6 +57,10 @@ function App() {
       <Route
         path="/signup"
         element={<SignUp setUser={setUser}/>}
+        />
+        <Route
+        path="/changepassword"
+        element={<ChangePassword setUser={setUser}/>}
         />
       <Route
       path="/signin"
