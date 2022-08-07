@@ -68,13 +68,6 @@ const Nav = ({ onOpen, ref, user, clearUser }) => {
               Add Post
             </Link>
             <Link 
-              onClick={() => navigate('/myposts')} 
-              fontSize="md" 
-              ml={6}
-            >
-              My Profile
-            </Link>
-            <Link 
               onClick={() => navigate('/changepassword')} 
               fontSize="md" 
               ml={6}

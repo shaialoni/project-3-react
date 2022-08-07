@@ -26,7 +26,7 @@ import MyProfileComments from './MyProfileComments';
 import PostForm from "./PostForm"
 import {deletePost} from '../../api/post'
 
-function Card({ post, user, postId, triggerRefresh, type }) {
+function Card({ post, user, postId, triggerRefresh, type, msgAlert}) {
   console.log(postId)
   const { isOpen, onOpen, onClose } = useDisclosure()
   console.log("user in card: ",user.token)
@@ -92,7 +92,7 @@ function Card({ post, user, postId, triggerRefresh, type }) {
               <ModalCloseButton />
               <ModalBody align="center" 
               justify="center">
-              <PostForm type="edit"/>
+              <PostForm type="edit" post={post} msgAlert={msgAlert}/>
               </ModalBody>
               <ModalFooter>
               </ModalFooter>
