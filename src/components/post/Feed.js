@@ -45,7 +45,7 @@ const Feed = ({ msgAlert, user }) => {
 
     return (
       <>
-        {myFeed}
+        {myFeed.reverse()}
       </>
     )
   }

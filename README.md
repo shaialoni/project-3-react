@@ -14,33 +14,15 @@ With Chakra UI, you spend less time building responsive and beautiful websites. 
 
 - 👉 [Chakra UI](https://chakra-ui.com/) - official website  
 
-## How to use it 
+### Instalation instructions
+To use this app you will need to install all dependencies needed, and you can do that by running these commands in your command line:
 
-- Install `NodejS` - version 14.x or higher 
-- Install dependencies via `yarn`
-- Start the project: `yarn start` 
-
-## Formik 
-Let's face it, forms are really verbose in React. To make matters worse, most form helpers do wayyyy too much magic and often have a significant performance cost associated with them. Formik is a small library that helps you with the 3 most annoying parts:
-
-Getting values in and out of form state
-Validation and error messages
-Handling form submission
-By colocating all of the above in one place, Formik will keep things organized--making testing, refactoring, and reasoning about your forms a breeze.
-
-## Installation
-You can install Formik with NPM, Yarn, or a good ol' `<script>` via unpkg.com.
-
-NPM
- npm install formik --save
-or
- yarn add formik
-
-Formik is compatible with React v15+ and works with ReactDOM and React Native.
-
-## Installing Dependencies
-Dependencies are stored in [`package.json.`](package.json) To install these dependencies, run npm install.
-
+```
+$ npm install
+```
+```
+$npm start
+```
 ------------
 
 # Spotlight App Project 
@@ -75,18 +57,19 @@ A social media app that allow users to "SPOTLIGHT" a major current event, a spec
 ## Views
 
 ### User Views
-    | Route             | Description                               |
-    | ----------------- | ----------------------------------------- |
-    | /sign-up          | allows users to sign into their account   |
-    | /sign-in          | allows users to create a new account      |
-    | /changepassword/ | allows users to change their password     |
+
+| Route | Description |
+| ----| ----|
+| /signup | allows users to create a new account |
+| /signin | allows users to sign into their account |
+| /changepassword/ | allows users to change their password |
 
 ### Post Views
-    | Route    | Description                             |
-    | -------- | --------------------------------------- |
-    | /        | allows users to see everyone's posts    |
-    | /myposts | allows users to see all of user's posts |
-    | /addpost | allows users to create a new post       |
+| Route | Description|
+| -------- | ------|
+| /  | allows users to see everyone's posts|
+| /myposts | allows users to see all of user's posts |
+| /addpost | allows users to create a new post |
 
 ## Wireframes
 ![](planning/WireFrames.png)
