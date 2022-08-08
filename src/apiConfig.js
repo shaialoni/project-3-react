@@ -1,7 +1,7 @@
 let apiUrl
 const apiUrls = {
     // YOU MUST CHANGE PRODUCTION URL WHEN DEPLOYING
-	production: 'https://seir-6-6-spotlight-app.herokuapp.com',
+	production: 'https://seir-6-6-spotlight-app-api.herokuapp.com',
 	development: 'http://localhost:8000',
 }
 
