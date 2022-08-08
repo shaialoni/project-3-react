@@ -4,39 +4,21 @@ import PostForm from '../shared/PostForm'
 import { Flex } from '@chakra-ui/layout'
 
 
-const Create = ({ user, msgAlert }) => {
-    const samplepost = {
-        title: "Hey FHJEHWFKWJH FKWJEFHW",
-        image: "https://picsum.photos/200/300",
-        caption: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        likes: 0,
-        owner: {
-            email: "t@t.t"
-        },
-        comments: [{owner: {
-                      email: "t@t.t"
-                    }, 
-                    note:"comment 1 note" },
-                    {owner: {
-                      email: "t@t.t"
-                    },
-                    note:"Clickerooskie" }]
-  
-  
-    }
+const Create = ({ user, msgAlert, triggerRefresh }) => {
+    
  const initialV = {
  }
 
- const onSubmit = (values) => {
-     console.log("got here")
-     console.log(values)
- }
+//  const onSubmit = (values) => {
+//      console.log("got here")
+//      console.log(values)
+//  }
 
   return (
     <Flex 
       align="center" 
       justify="center" h="100vh">
-      <PostForm user={user} msgAlert={msgAlert}
+      <PostForm user={user} msgAlert={msgAlert} triggerRefresh={triggerRefresh}
       />
 
     </Flex>

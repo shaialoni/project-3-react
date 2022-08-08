@@ -23,7 +23,7 @@ function FileUploadPage({ user, type, msgAlert, postId, triggerRefresh, onClose,
 	const [caption, setCaption ] = useState("")
 	const [ upload, setUpload ] = useState({})
 	const [ loading, setLoading ] = useState(null)
-	const [toast, newToast] = useToastHook()
+	//const [toast, newToast] = useToastHook()
 	const navigate = useNavigate()
 	const myUrl = useRef("")
 
@@ -65,7 +65,9 @@ function FileUploadPage({ user, type, msgAlert, postId, triggerRefresh, onClose,
 			console.log("NEWPOST: ",newPost)
 			// console.log('USER ======>', user)
 			createPost(user, newPost)
-				.then(navigate('/'))
+				.then(() => {
+					navigate('/')
+				})
 				.catch(err => {
 					console.log(err)
 					msgAlert("Create post error", "error")
@@ -104,6 +106,10 @@ function FileUploadPage({ user, type, msgAlert, postId, triggerRefresh, onClose,
 	return <Loading/>
   }
 
+  if (!user) {
+	navigate('/')
+	return 
+  }
   return (
 
 	

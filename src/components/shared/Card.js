@@ -78,7 +78,7 @@ function Card({ post, user, postId, triggerRefresh, type, msgAlert}) {
           <Box display='flex' mt='2' alignItems='center'>
  
             <Box as='span' ml='2' color='gray.600' fontSize='sm'>
-              {post.likes} likes
+              {post.likes.length} likes
             </Box>
           </Box>
 

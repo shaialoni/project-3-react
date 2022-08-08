@@ -73,7 +73,7 @@ function App() {
       />
       <Route
       path="/addpost"
-      element={<Create user={user} msgAlert={msgAlert}/>}
+      element={<Create user={user} msgAlert={msgAlert} />}
       />
     </Routes>
     <Footer />
