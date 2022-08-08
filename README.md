@@ -79,7 +79,7 @@ A social media app that allow users to "SPOTLIGHT" a major current event, a spec
     | ----------------- | ----------------------------------------- |
     | /sign-up          | allows users to sign into their account   |
     | /sign-in          | allows users to create a new account      |
-    | /changepassword/ | allows users to change their password     |
+    | /changepassword/ | allows users to change their password      |
 
 ### Post Views
     | Route    | Description                             |
