@@ -40,3 +40,16 @@ export const deletePost = (user, postId) => {
         },  
     })
 }
+
+export const editPost = (user, postId, editPost) => {
+    return axios({
+        method: 'PATCH',
+        url: `${apiUrl}/posts/${postId}`,
+        headers: {
+            Authorization: `Token token=${user.token}`,
+        },
+        data: {
+			post: editPost
+		},
+    })
+}

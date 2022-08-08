@@ -74,6 +74,7 @@ const MyIndex = ({ user, msgAlert }) => {
       key={i}
       user={user}
       postId={post._id}
+      msgAlert={msgAlert}
       triggerRefresh={() => setUpdated(prev => !prev)}
       type="edit"
     />

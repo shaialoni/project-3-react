@@ -12,12 +12,12 @@ import {
 	Textarea
 	} from '@chakra-ui/react'
 import {createUrl} from '../../api/aws'
-import {createPost}	from '../../api/post'
+import {createPost, editPost}	from '../../api/post'
 import { useNavigate } from 'react-router-dom';
 import {useToastHook} from './../shared/Toast'
 import Loading from './Loading';
 
-function FileUploadPage({ user, type, msgAlert }){
+function FileUploadPage({ user, type, msgAlert, postId, triggerRefresh, onClose }){
 	const [file, setFile] = useState()
 	const [title, setTitle] = useState("")
 	const [caption, setCaption ] = useState("")
@@ -69,18 +69,35 @@ function FileUploadPage({ user, type, msgAlert }){
 				.catch(err => {
 					console.log(err)
 					msgAlert("Create post error", "error")
-					navigate('/')
+					setLoading(false)
 				})
 		})
 		.then(() => setLoading(false))
 		.catch(err => {
 			console.log(err)
 			msgAlert("Image upload error", "error")
+			setLoading(false)
 		})
   }
 
   function handleSubmitEdit (e) {
 	  e.preventDefault()
+	  const editedFields = {
+		title,
+		caption
+	  }
+	  console.log('editedFields', editedFields)
+	  editPost(user, postId, editedFields)
+	  	.then(res => {
+			console.log('res ====>', res)
+			triggerRefresh()
+			onClose()
+			console.log('triggered refresh')
+		})
+		.catch(err => {
+			console.log(err)
+			msgAlert("edit post error", "error")
+		})
   }
   
   if (loading) {
