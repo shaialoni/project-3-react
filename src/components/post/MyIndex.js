@@ -1,5 +1,5 @@
 import React from 'react'
-import Card from '../shared/Card';
+import Card from '../shared/Card'
 import {useState, useEffect } from 'react'
 import {
     Flex,
@@ -7,12 +7,10 @@ import {
     Link,
     Box,
     Button
-  } from '@chakra-ui/react';
-import { getAllMyPosts } from '../../api/post';
-import Loading from '../shared/Loading';
-import { useNavigate } from 'react-router-dom';
-import { deletePost } from '../../api/post';
-
+  } from '@chakra-ui/react'
+import { getAllMyPosts } from '../../api/post'
+import Loading from '../shared/Loading'
+import { useNavigate } from 'react-router-dom'
 
 const MyIndex = ({ user, msgAlert }) => {
   const [ cards, setCards ] = useState(null)
@@ -21,13 +19,8 @@ const MyIndex = ({ user, msgAlert }) => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!user) {
-      navigate('/')
-      return
-    }
     getAllMyPosts(user)
       .then(res => {
-        console.log(user)
         setCards(res.data.posts)
       })
       .catch(err => {
@@ -36,18 +29,6 @@ const MyIndex = ({ user, msgAlert }) => {
       })
   }, [updated])
   
-  // const onDelete = (user, postId) => {
-  //   deletePost(user, postId)
-  //     .then(() => {
-  //       setDeleted(prev => !prev)
-  //       msgAlert('Post deleted successfuly!', 'success') 
-  //     })
-  //     .catch(err => {
-  //       msgAlert('Error deleting post', 'error')
-  //       console.log(err)
-  //     })
-  // }
-
    //this happens if posts == null
    if (!cards) {
     return (
@@ -82,27 +63,28 @@ const MyIndex = ({ user, msgAlert }) => {
   })
 
   return (
-    <Box >
-    <Box align="center" justify="center">
-    <Text fontSize={"4xl"} fontWeight="bold" textAlign={"center"} m="4">
+    <Box>
+      <Box align="center" justify="center">
+      <Text fontSize={"4xl"} fontWeight="bold" textAlign={"center"} m="4">
         My Posts
       </Text>
       <Button 
-              onClick={() => navigate('/addpost')}    fontSize="md" ml={6} m="2" colorScheme={"blue"}
-            >
-              Add Post
-            </Button>
-    </Box>
-      
-
+        onClick={() => navigate('/addpost')}    
+        fontSize="md" 
+        ml={6} 
+        m="2" 
+        colorScheme={"blue"}
+      >
+        Add Post
+      </Button>
+      </Box>
       <Flex
-      flexWrap={"wrap"}
-      justifyContent={"center"}
-    >
+        flexWrap={"wrap"}
+        justifyContent={"center"}
+      >
         {myIndex}
-    </Flex>
+      </Flex>
     </Box>
-    
   )
 }
 

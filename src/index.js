@@ -1,11 +1,11 @@
-import React from 'react';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import './index.css'
+import App from './App'
+import reportWebVitals from './reportWebVitals'
 import { ChakraProvider } from '@chakra-ui/react'
 import { ColorModeScript } from '@chakra-ui/react'
-import theme from './theme';
-import { BrowserRouter } from 'react-router-dom';
+import theme from './theme'
+import { BrowserRouter } from 'react-router-dom'
 import {createRoot} from 'react-dom/client'
 
 const container = document.getElementById("root")
@@ -18,15 +18,5 @@ root.render(
     </ChakraProvider>
   </BrowserRouter>
 )
-// ReactDOM.render(
-//   <BrowserRouter>
-//     <ChakraProvider>
-//     <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-//     <App />
-//     </ChakraProvider>
-//   </BrowserRouter>,
-//   document.getElementById('root'),
-// );
 
-
-reportWebVitals();
+reportWebVitals()

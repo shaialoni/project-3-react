@@ -1,4 +1,4 @@
-import { Formik, Field } from "formik";
+import { Formik, Field } from "formik"
 import {
   Box,
   Button,
@@ -10,10 +10,10 @@ import {
   VStack,
   Text,
   Link
-} from "@chakra-ui/react";
+} from "@chakra-ui/react"
 
-export default function UserForm(props) {
-  const {initialV, onSubmit, heading, code, buttonText } = props
+export default function UserForm({ initialV, onSubmit, heading, code, buttonText }) {
+
   return (
     <>
       
@@ -64,13 +64,13 @@ export default function UserForm(props) {
                     type="password"
                     variant="filled"
                     validate={(value) => {
-                      let error;
+                      let error
 
                       if (value.length < 5) {
-                        error = "Password must contain at least 6 characters";
+                        error = "Password must contain at least 6 characters"
                       }
 
-                      return error;
+                      return error
                     }}
                   />
                   <FormErrorMessage>{errors.password}</FormErrorMessage>
@@ -94,5 +94,5 @@ export default function UserForm(props) {
     </Flex>
     </>
 
-  );
+  )
 }

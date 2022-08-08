@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   Drawer,
   DrawerBody,
@@ -8,8 +8,8 @@ import {
   DrawerCloseButton,
   Link,
   Flex,
-} from '@chakra-ui/react';
-import { useNavigate, Navigate } from 'react-router-dom';
+} from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
 
 const DrawerComponent = ({ isOpen, onClose, btnRef, user, clearUser }) => {
   const navigate = useNavigate()
@@ -67,7 +67,7 @@ const DrawerComponent = ({ isOpen, onClose, btnRef, user, clearUser }) => {
         </DrawerBody>
       </DrawerContent>
     </Drawer>
-  );
-};
+  )
+}
 
-export default DrawerComponent;
+export default DrawerComponent

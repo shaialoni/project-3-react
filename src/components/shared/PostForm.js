@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef} from 'react'
 import {
 	FormControl,
 	FormLabel,
@@ -13,9 +13,8 @@ import {
 	} from '@chakra-ui/react'
 import {createUrl} from '../../api/aws'
 import {createPost, editPost}	from '../../api/post'
-import { useNavigate } from 'react-router-dom';
-import {useToastHook} from './../shared/Toast'
-import Loading from './Loading';
+import { useNavigate } from 'react-router-dom'
+import Loading from './Loading'
 
 function FileUploadPage({ user, type, msgAlert, postId, triggerRefresh, onClose, post }){
 	const [file, setFile] = useState()
@@ -23,47 +22,27 @@ function FileUploadPage({ user, type, msgAlert, postId, triggerRefresh, onClose,
 	const [caption, setCaption ] = useState("")
 	const [ upload, setUpload ] = useState({})
 	const [ loading, setLoading ] = useState(null)
-	//const [toast, newToast] = useToastHook()
 	const navigate = useNavigate()
 	const myUrl = useRef("")
 
 	function handleChangeFile(event) {
 		setFile(event.target.files[0])
 	}
-
-	// const msgAlert = (message, status) => {
-	// 	newToast({ message: message, status: status });
-	//   };
-//   function handChangeTitle(event) {
-// 	  setTitle(prev => {
-// 		  return event.target.value
-// 	  })
-// 	  console.log(title)
-//   }
   
   function handleSubmitCreate(event) {
     event.preventDefault()
-    // const url = 'http://localhost:3000/uploadFile';
-    const data = new FormData();
-    data.append('upload', file);
-    // data.append('fileName', file.name);
-	// data.append('title', (title))
-	// data.append('caption', caption)
+    const data = new FormData()
+    data.append('upload', file)
 	setLoading(true)
 	createUrl(data)
 		.then(res => {
-			// setUpload(res.data.upload)
-			
 			myUrl.current = res.data.upload.url
 			const image = myUrl.current
-			console.log("UPLOAD: ",upload, "UPLOADURL", upload.url)
 			const newPost = {
 				title,
 				caption,
 				image
 			}
-			console.log("NEWPOST: ",newPost)
-			// console.log('USER ======>', user)
 			createPost(user, newPost)
 				.then(() => {
 					navigate('/')
@@ -88,13 +67,10 @@ function FileUploadPage({ user, type, msgAlert, postId, triggerRefresh, onClose,
 		title,
 		caption
 	  }
-	  console.log('editedFields', editedFields)
 	  editPost(user, postId, editedFields)
 	  	.then(res => {
-			console.log('res ====>', res)
 			triggerRefresh()
 			onClose()
-			console.log('triggered refresh')
 		})
 		.catch(err => {
 			console.log(err)
@@ -106,18 +82,13 @@ function FileUploadPage({ user, type, msgAlert, postId, triggerRefresh, onClose,
 	return <Loading/>
   }
 
-  if (!user) {
-	navigate('/')
-	return 
-  }
   return (
-
-	
-      <Box bg="gray:50" p={3} rounded="md" w={64}>
-      <Text
-          fontSize='4xl'
-          textAlign={"center"}
-          >{type==="edit" ? "Edit Post" : "Create Post" }
+    <Box bg="gray:50" p={3} rounded="md" w={64}>
+		<Text
+			fontSize='4xl'
+			textAlign={"center"}
+		>
+			{type==="edit" ? "Edit Post" : "Create Post" }
 		</Text>
 		<form onSubmit={type === "edit" ? handleSubmitEdit : handleSubmitCreate}>
 		<FormControl>
@@ -162,7 +133,7 @@ function FileUploadPage({ user, type, msgAlert, postId, triggerRefresh, onClose,
 		
 		</Box>
 
-  );
+  )
 }
 
 export default FileUploadPage
