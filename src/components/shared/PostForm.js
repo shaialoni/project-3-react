@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import {useToastHook} from './../shared/Toast'
 import Loading from './Loading';
 
-function FileUploadPage({ user, type, msgAlert, postId, triggerRefresh, onClose }){
+function FileUploadPage({ user, type, msgAlert, postId, triggerRefresh, onClose, post }){
 	const [file, setFile] = useState()
 	const [title, setTitle] = useState("")
 	const [caption, setCaption ] = useState("")
@@ -123,7 +123,9 @@ function FileUploadPage({ user, type, msgAlert, postId, triggerRefresh, onClose 
 				name="title"
 				type="text"
 				onChange={(e) => setTitle(e.target.value)}
+				defaultValue={type === "edit" ? `${post.title}` : ""}
 				required>
+				
 
 			</Input>
 		</FormControl>
@@ -136,6 +138,7 @@ function FileUploadPage({ user, type, msgAlert, postId, triggerRefresh, onClose 
 				name="caption"
 				type="text"
 				onChange={(e) => setCaption(e.target.value)}
+				defaultValue={type === "edit" ? `${post.caption}` : ""}
 				required>
 
 			</Textarea>

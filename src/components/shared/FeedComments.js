@@ -3,11 +3,12 @@ import {
     Box,
     Input,
     InputGroup,
+    Badge,
     InputRightElement,
     Text
     } from "@chakra-ui/react";
 import { AddIcon } from '@chakra-ui/icons';
-import { createComment } from '../../api/comment';
+import { createComment, deleteComment } from '../../api/comment';
 
 const FeedComments = ({comments, triggerRefresh, user, postId}) => {
   const inputEl = useRef(null)
@@ -18,6 +19,7 @@ const FeedComments = ({comments, triggerRefresh, user, postId}) => {
     createComment(user, postId, inputEl.current.value)
       .then(() => {
         triggerRefresh()
+        inputEl.current.value = ""
       })
       .catch(err => {
         console.log(err)
@@ -25,9 +27,27 @@ const FeedComments = ({comments, triggerRefresh, user, postId}) => {
     
   }
 
+  const onDeleteComment = (commId) => {
+    console.log(commId, postId)
+    deleteComment(user, postId, commId)
+      .then(() => {
+        triggerRefresh()
+      })
+      .catch(er => {
+        console.log(er)
+      })
+  }
+
   const commentList = comments.map((comment, i) => {
     return (
-      <Box w='100%' m="1" display={"flex"} key={i}>
+      <Box w='100%' m="1" display={"flex"} key={i} alignItems="center" alignContent={"center"}>
+        {(user) && (comment.owner.email === user.email) ? 
+          <Badge role='button' mr="2" borderRadius='full' px='1' colorScheme='red' onClick={() => onDeleteComment(comment._id)} justifyContent="center" alignItems={"center"} >
+            <p>X</p>
+          </Badge> 
+          :
+           ""
+          }
         <Text fontWeight={"bold"} mr="1">
         {comment.owner.email}
         </Text>
@@ -39,7 +59,7 @@ const FeedComments = ({comments, triggerRefresh, user, postId}) => {
     )
   })
   return (
-    <Box w='100%' h="auto"maxH={"35rem"} p={4} overflowY={"scroll"} overflowX={"hidden"}>
+    <Box w='100%' h="auto" maxH={"15rem"} p={4} overflowY={"scroll"} overflowX={"hidden"}>
     { user ? 
     <InputGroup>
     <Input 

@@ -50,11 +50,6 @@ const DrawerComponent = ({ isOpen, onClose, btnRef, user, clearUser }) => {
                 >
                   Add Post
                 </Link>
-                <Link 
-                  onClick={() => navigate('/myposts')} 
-                  mb="3"
-                >
-                  My Profile</Link>
                   <Link 
                     onClick={() => navigate('/changepassword')} 
                     mb='3'

@@ -5,7 +5,8 @@ import {
     Flex,
     Text,
     Link,
-    Box
+    Box,
+    Button
   } from '@chakra-ui/react';
 import { getAllMyPosts } from '../../api/post';
 import Loading from '../shared/Loading';
@@ -77,16 +78,32 @@ const MyIndex = ({ user, msgAlert }) => {
       msgAlert={msgAlert}
       triggerRefresh={() => setUpdated(prev => !prev)}
       type="edit"
+      msgAlert={msgAlert}
     />
   })
 
   return (
-    <Flex
+    <Box >
+    <Box align="center" justify="center">
+    <Text fontSize={"4xl"} fontWeight="bold" textAlign={"center"} m="4">
+        My Posts
+      </Text>
+      <Button 
+              onClick={() => navigate('/addpost')}    fontSize="md" ml={6} m="2" colorScheme={"blue"}
+            >
+              Add Post
+            </Button>
+    </Box>
+      
+
+      <Flex
       flexWrap={"wrap"}
       justifyContent={"center"}
     >
         {myIndex}
     </Flex>
+    </Box>
+    
   )
 }
 

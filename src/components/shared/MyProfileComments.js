@@ -4,10 +4,11 @@ import {
   Input,
   InputGroup,
   InputRightElement,
-  Text
+  Text,
+  Badge
   } from "@chakra-ui/react";
 import { AddIcon } from '@chakra-ui/icons';
-import { createComment } from '../../api/comment';
+import { createComment, deleteComment } from '../../api/comment';
 
 const MyProfileComments = ({comments, user, postId, triggerRefresh}) => {
 
@@ -19,6 +20,7 @@ const MyProfileComments = ({comments, user, postId, triggerRefresh}) => {
     createComment(user, postId, inputEl.current.value)
       .then(() => {
         triggerRefresh()
+        inputEl.current.value = ""
       })
       .catch(err => {
         console.log(err)
@@ -26,13 +28,31 @@ const MyProfileComments = ({comments, user, postId, triggerRefresh}) => {
     
   }
 
+  const onDeleteComment = (commId) => {
+    console.log(commId, postId)
+    deleteComment(user, postId, commId)
+      .then(() => {
+        triggerRefresh()
+      })
+      .catch(er => {
+        console.log(er)
+      })
+  }
+
   const commentList = comments.map((comment, i) => {
     return (
-      <Box w='100%' m="1" display={"flex"} key={i}>
-        <Text fontWeight={"bold"} fontSize={"xs"} mr="1">
+      <Box w='100%' m="1" display={"flex"} key={i} alignItems="center" alignContent={"center"}>
+        {(user) && (comment.owner.email === user.email) ? 
+          <Badge role='button' mr="2" borderRadius='full' px='1' colorScheme='red' onClick={() => onDeleteComment(comment._id)} justifyContent="center" alignItems={"center"} >
+            <p>X</p>
+          </Badge> 
+          :
+           ""
+          }
+        <Text fontWeight={"bold"} mr="1" fontSize={"s"}>
         {comment.owner.email}
         </Text>
-        <Text fontSize={"xs"} overflowWrap={"break-word"}>
+        <Text overflowWrap={"break-word"}>
         {comment.note}
         </Text>
       </Box>
