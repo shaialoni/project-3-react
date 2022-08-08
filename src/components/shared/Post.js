@@ -9,16 +9,52 @@ import {
   useMediaQuery,
 } from '@chakra-ui/react';
 import { StarIcon } from '@chakra-ui/icons'
-
-
 import React, {useState} from 'react';
 import FeedComments from './FeedComments';
+import { increaseLike, decreaseLike } from '../../api/like';
+import { set } from 'react-hook-form';
 
-
+// color={'teal.500'}
 const Post = ({post, triggerRefresh, user, msgAlert}) => {
   const [isLargerThanLG] = useMediaQuery('(min-width: 62em)');
   const [commentToggle, setCommentToggle] = useState(false)
-  console.log("post._id", post._id)
+  const [like, setLike ] = useState(post.likes.length)
+  let myColor
+  if (user) {
+    if (post.likes.includes(user._id)) {
+    myColor = 'teal.500'
+    } else {
+      myColor = 'gray.500'
+    }
+}
+
+  const addLike = () => {
+    console.log('USERID====>>', user._id)
+    console.log('LIKES ARRAY', post.likes)
+    if (!post.likes.includes(user._id)) {
+      increaseLike(user, post._id)
+        .then(() => {
+          myColor = 'teal.500'
+          triggerRefresh()
+          setLike(post.likes.length)
+        })
+        .catch(err => {
+          msgAlert('Error liking', 'error')
+          console.log(err)
+        })
+    } else {
+      decreaseLike(user, post._id)
+        .then(() => {
+          myColor = 'gray.500'
+          triggerRefresh()
+          setLike(post.likes.length)
+        })
+        .catch(err => {
+          msgAlert('Error liking', 'error')
+          console.log(err)
+        })
+    }
+  }
   return (
     <Flex
     width="full"
@@ -67,11 +103,15 @@ const Post = ({post, triggerRefresh, user, msgAlert}) => {
           <Box display='flex' mt='2' alignItems='center'>
           
             <Box as='span' ml='2' color='gray.600' fontSize='sm'>
-              {post.likes} Likes
+              {post.likes.length} Likes
             </Box>
+            {user ? 
             <StarIcon
-                  ml="1" alignSelf={"center"} color={'teal.500'}
+                  ml="1" alignSelf={"center"} color={myColor} onClick={() => addLike()}
             />
+            :
+            ""
+            }
           </Box>
             
           </Box>

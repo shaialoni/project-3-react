@@ -12,12 +12,13 @@ const Feed = ({ msgAlert, user }) => {
   useEffect(() => {
       getAllPosts()
         .then(res => {
-          console.log('res =====>', res)
+          //console.log('res =====>', res)
           setPosts(res.data.posts)
         })
         .catch(err => {
           msgAlert('Error displaying posts', 'error')
-          console.log(err)})
+          //console.log(err)
+        })
   }, [updated])
 
   //this happens if posts == null

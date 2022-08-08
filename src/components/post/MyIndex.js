@@ -78,7 +78,6 @@ const MyIndex = ({ user, msgAlert }) => {
       msgAlert={msgAlert}
       triggerRefresh={() => setUpdated(prev => !prev)}
       type="edit"
-      msgAlert={msgAlert}
     />
   })
 
