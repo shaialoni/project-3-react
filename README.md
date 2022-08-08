@@ -1,45 +1,10 @@
-# [React Chakra Introduction](https://blog.appseed.us/chakra-ui-react-coding-landing-page/)
+# Techonologies Used
 
-Sample Code for the blog article [React Chakra UI Components - Learn by Coding](https://blog.appseed.us/chakra-ui-react-coding-landing-page/) - Provided by `AppSeed`.
-
-The article explains how to use the Chakra UI library in React.js by building a responsive website. The website will be built with Chakra components only, no HTML element will be used.
-
-- 👉 [React Chakra Landing Page](https://react-chakra-ui-landing-page.appseed-srv1.com/) - LIVE Demo
-- 👉 [React Apps](https://appseed.us/apps/react) - index provided by `AppSeed`
-
-<br />
-
-![React MUI Introduction - Sample Page crafted with MUI.](https://user-images.githubusercontent.com/51070104/167240339-dc157d52-8fc1-410f-b5f1-74ab11205b0b.gif)
-
-<br />
-
-## How to use it 
-
-- Install `NodejS` - version 14.x or higher 
-- Install dependencies via `yarn`
-- Start the project: `yarn start` 
-
-<br />
-
-## Components
-
-- `Header` 
-- `Hero`
-- `Info Section`
-- `AboutUs`
-- `Testimonial`
-- `ContactUs`
-- `Footer`   
-
-<br />
-
-## What is React.js
+## React.js
 
 React.js is a JavaScript library that allows you to build fast and efficient web applications using the minimum amount of code possible. In React.js, you can break the web layout into components - reusable bits of code that return HTML elements. 
 
 - 👉 [JavaScript concepts for React Beginners](https://blog.appseed.us/10-javascript-concepts-for-react-beginners/)
-
-<br />
 
 ## Chakra UI Library 
 
@@ -49,13 +14,36 @@ With Chakra UI, you spend less time building responsive and beautiful websites. 
 
 - 👉 [Chakra UI](https://chakra-ui.com/) - official website  
 
-<br />
+## How to use it 
 
---- 
-[React Chakra Introduction](https://blog.appseed.us/chakra-ui-react-coding-landing-page/) - provided by AppSeed 
+- Install `NodejS` - version 14.x or higher 
+- Install dependencies via `yarn`
+- Start the project: `yarn start` 
 
+## Formik 
+Let's face it, forms are really verbose in React. To make matters worse, most form helpers do wayyyy too much magic and often have a significant performance cost associated with them. Formik is a small library that helps you with the 3 most annoying parts:
 
-# Spotlight API Project 
+Getting values in and out of form state
+Validation and error messages
+Handling form submission
+By colocating all of the above in one place, Formik will keep things organized--making testing, refactoring, and reasoning about your forms a breeze.
+
+## Installation
+You can install Formik with NPM, Yarn, or a good ol' `<script>` via unpkg.com.
+
+NPM
+ npm install formik --save
+or
+ yarn add formik
+
+Formik is compatible with React v15+ and works with ReactDOM and React Native.
+
+## Installing Dependencies
+Dependencies are stored in [`package.json.`](package.json) To install these dependencies, run npm install.
+
+------------
+
+# Spotlight App Project 
 A social media app that allow users to "SPOTLIGHT" a major current event, a special moment of their day, or just an image that provided a fleeting moment of joy and share it with others.
 
 ## User Story
@@ -84,8 +72,21 @@ A social media app that allow users to "SPOTLIGHT" a major current event, a spec
 - As a signed in user, i would like to follow another user
 - As a signed in user, i would like to share another user's post
 
-## Technology
-We will be using React for our front end with RESTful routes and Moongose Express for our back end with CRUD actions. The app will use AWS to store the uploaded images, MongoDB Atlas as the database, and Heroku to launch.
+## Views
+
+### User Views
+    | Route             | Description                               |
+    | ----------------- | ----------------------------------------- |
+    | /sign-up          | allows users to sign into their account   |
+    | /sign-in          | allows users to create a new account      |
+    | /changepassword/ | allows users to change their password     |
+
+### Post Views
+    | Route    | Description                             |
+    | -------- | --------------------------------------- |
+    | /        | allows users to see everyone's posts    |
+    | /myposts | allows users to see all of user's posts |
+    | /addpost | allows users to create a new post       |
 
 ## Wireframes
 ![](planning/WireFrames.png)
