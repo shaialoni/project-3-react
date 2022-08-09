@@ -14,7 +14,7 @@ With Chakra UI, you spend less time building responsive and beautiful websites. 
 
 - 👉 [Chakra UI](https://chakra-ui.com/) - official website  
 
-### Instalation instructions
+### Installation instructions
 To use this app you will need to install all dependencies needed, and you can do that by running these commands in your command line:
 
 ```
