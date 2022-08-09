@@ -21,8 +21,11 @@ To use this app you will need to install all dependencies needed, and you can do
 $ npm install
 ```
 ```
-$npm start
+$ npm start
 ```
+
+This app is designed to work with the backend app, linked here:
+https://github.com/shaialoni/project-3-mongoose-express
 ------------
 
 # Spotlight App Project 
