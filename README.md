@@ -14,33 +14,15 @@ With Chakra UI, you spend less time building responsive and beautiful websites. 
 
 - 👉 [Chakra UI](https://chakra-ui.com/) - official website  
 
-## How to use it 
+### Installation instructions
+To use this app you will need to install all dependencies needed, and you can do that by running these commands in your command line:
 
-- Install `NodejS` - version 14.x or higher 
-- Install dependencies via `yarn`
-- Start the project: `yarn start` 
-
-## Formik 
-Let's face it, forms are really verbose in React. To make matters worse, most form helpers do wayyyy too much magic and often have a significant performance cost associated with them. Formik is a small library that helps you with the 3 most annoying parts:
-
-Getting values in and out of form state
-Validation and error messages
-Handling form submission
-By colocating all of the above in one place, Formik will keep things organized--making testing, refactoring, and reasoning about your forms a breeze.
-
-## Installation
-You can install Formik with NPM, Yarn, or a good ol' `<script>` via unpkg.com.
-
-NPM
- npm install formik --save
-or
- yarn add formik
-
-Formik is compatible with React v15+ and works with ReactDOM and React Native.
-
-## Installing Dependencies
-Dependencies are stored in [`package.json.`](package.json) To install these dependencies, run npm install.
-
+```
+$ npm install
+```
+```
+$npm start
+```
 ------------
 
 # Spotlight App Project 
@@ -58,7 +40,7 @@ A social media app that allow users to "SPOTLIGHT" a major current event, a spec
 - As a signed in user, I would like to see the thumbnail of all images on AWS.
 - As a signed in user, I would like to comment on posts
 - As a signed in user, I would like to delete my comments
-- As a signed in user, I would like to update my comments
+- As a signed in user, I would like to 'like' images
 - As a signed in user, I would like to delete the reference of my image from the database.
 - As a signed in user, I would like to see the following data for any post:
     - date created/uploaded
@@ -68,25 +50,25 @@ A social media app that allow users to "SPOTLIGHT" a major current event, a spec
 
 ### Stretch Goals
 - As an unregistered user, I would like to download any image
-- As a signed in user, I would like to 'like' images
 - As a signed in user, i would like to follow another user
 - As a signed in user, i would like to share another user's post
 
 ## Views
 
 ### User Views
-    | Route             | Description                               |
-    | ----------------- | ----------------------------------------- |
-    | /sign-up          | allows users to sign into their account   |
-    | /sign-in          | allows users to create a new account      |
-    | /changepassword/ | allows users to change their password      |
+
+| Route | Description |
+| ----| ----|
+| /signup | allows users to create a new account |
+| /signin | allows users to sign into their account |
+| /changepassword/ | allows users to change their password |
 
 ### Post Views
-    | Route    | Description                             |
-    | -------- | --------------------------------------- |
-    | /        | allows users to see everyone's posts    |
-    | /myposts | allows users to see all of user's posts |
-    | /addpost | allows users to create a new post       |
+| Route | Description|
+| -------- | ------|
+| /  | allows users to see everyone's posts|
+| /myposts | allows users to see all of user's posts |
+| /addpost | allows users to create a new post |
 
 ## Wireframes
 ![](planning/WireFrames.png)
