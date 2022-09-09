@@ -16,7 +16,7 @@ root.render(
     <ColorModeScript initialColorMode={theme.config.initialColorMode} />
     <App />
     </ChakraProvider>
-  </BrowserRouter>
+  </BrowserRouter>,
+  document.getElementById('root')
 )
-
 reportWebVitals()
