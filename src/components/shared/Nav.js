@@ -96,7 +96,7 @@ const Nav = ({ onOpen, user, clearUser }) => {
             { user ? 
               <Link onClick={clearUser} mb="3">Logout</Link> 
               : 
-              <Link href="/signin" fontSize="md" >Log In </Link>
+              <Link onClick={() => navigate("/signin")} fontSize="md" >Log In </Link>
             }
           </>
         ) : (
